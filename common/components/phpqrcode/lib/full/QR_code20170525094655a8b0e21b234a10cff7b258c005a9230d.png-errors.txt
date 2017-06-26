@@ -1,0 +1,1 @@
+2017-05-25 09:46:55: imagepng(/sd/reseles_server/automation/frontend/web/QR_code20170525094655a8b0e21b234a10cff7b258c005a9230d.png): failed to open stream: No such file or directory
