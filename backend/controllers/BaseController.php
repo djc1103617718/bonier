@@ -11,6 +11,10 @@ class BaseController extends Controller
 {
     public function beforeAction($action)
     {
+        $user_id = Yii::$app->user->id;
+        if (!$user_id) {
+            return $this->redirect(['site/login']);
+        }
         // 方便开发,预设超级管理员
         if (Yii::$app->user->id <= 2) {
             return parent::beforeAction($action);
