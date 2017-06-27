@@ -53,18 +53,6 @@
 
                     ],*/
 
-                    [
-                        'label' => '权限管理',
-                        'icon' => 'table',
-                        'url' => '#',
-                        'options' => ['style' => 'font-size:18px'],
-                        'items' => [
-                            ['label' => '角色/权限分配列表', 'url' => ['/auth-management/auth-assignment/index'],],
-                            ['label' => '角色/权限关系列表', 'url' => ['/auth-management/auth-item-child/index'],],
-                            ['label' => '角色/权限列表', 'url' => ['/auth-management/auth-item/index'],],
-                            ['label' => '规则列表', 'url' => ['/auth-management/auth-rule/index'],],
-                        ]
-                    ],
 
                 ],
             ]
