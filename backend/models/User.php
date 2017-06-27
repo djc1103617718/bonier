@@ -11,9 +11,10 @@ class User extends \common\models\User
         return [
             [['deadline', 'shop_name'], 'required'],
             [['deadline', 'shop_name', 'referrals'], 'string'],
-            ['phone', 'number'],
             ['referrals', 'string', 'max' => 64],
-            ['phone', 'integer', 'min' => 11],
+            ['phone', 'number'],
+            ['phone', 'string', 'min' => 11],
+            ['phone', 'string', 'max' => 11],
             ['phone', 'filter', 'filter' => 'trim'],
             ['phone', 'unique', 'targetClass' => '\common\models\User', 'message' => '手机号已被使用'],
         ];

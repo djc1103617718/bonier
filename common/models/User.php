@@ -59,8 +59,10 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['shop_name', 'username', 'password', 'password_hash', 'deadline'], 'required'],
-            [['phone', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['status'], 'integer'],
+            [['created_at', 'updated_at'], 'string'],
             [['deadline'], 'safe'],
+            ['phone', 'string', 'max' => 11],
             [['shop_name'], 'string', 'max' => 256],
             [['username'], 'string', 'max' => 50],
             [['password'], 'string', 'max' => 48],

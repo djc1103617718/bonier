@@ -51,12 +51,17 @@ class Admin extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'password_hash'], 'required'],
-            [['id', 'phone', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'status'], 'integer'],
+            [['created_at', 'updated_at'], 'string'],
             [['username'], 'string', 'max' => 50],
             [['password_hash'], 'string', 'max' => 80],
             [['password_reset_token', 'email', 'auth_key'], 'string', 'max' => 60],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            ['phone', 'number'],
+            ['phone', 'string', 'min' => 11],
+            ['phone', 'string', 'max' => 11],
+            ['phone', 'filter', 'filter' => 'trim'],
             [['phone'], 'unique'],
         ];
     }
