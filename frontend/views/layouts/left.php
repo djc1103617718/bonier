@@ -51,7 +51,7 @@
                     ],
                     [
                         'label' => '店铺信息',
-                        'icon' => 'users',
+                        'icon' => 'square',
                         'url' => '#',
                         'options' => ['style' => 'font-size:18px'],
                         'items' => [
@@ -72,7 +72,7 @@
                     ],*/
                     [
                         'label' => '订单管理',
-                        'icon' => 'commenting',
+                        'icon' => 'reorder',
                         'url' => ['order/index'],
                         'options' => ['style' => 'font-size:18px'],
                         /*'items' => [
@@ -82,7 +82,7 @@
 
                     [
                         'label' => '上传管理',
-                        'icon' => 'bar-chart',
+                        'icon' => 'cloud-upload',
                         'url' => '',
                         'options' => ['style' => 'font-size:18px'],
                         'items' => [

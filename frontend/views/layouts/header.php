@@ -117,7 +117,7 @@ use yii\helpers\Url;
                 <li class="dropdown user user-menu" style="margin-top: 10px">
                     <?php if (isset(Yii::$app->user->id)) {?>
                         <form action=<?= \yii\helpers\Url::to(['/site/logout'])?> method='post'>
-                            <input type="hidden" name="frontend_csrf" value="<?=Yii::$app->request->getCsrfToken() ?>">
+                            <input type="hidden" name="_csrf-frontend" value="<?=Yii::$app->request->getCsrfToken() ?>">
                             <button type="submit" class="btn btn-default" ><span class='fa fa-sign-out text-info'>(<?=Yii::$app->user->identity->username?>)</span></button>
                         </form>
                     <?php } ?>
