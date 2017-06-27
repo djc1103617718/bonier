@@ -85,7 +85,7 @@ class UserController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->update(false)) {
+        if ($model->load(Yii::$app->request->post()) && $model->update()) {
             Yii::$app->session->setFlash('success', '更新成功!');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
