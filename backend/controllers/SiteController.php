@@ -35,7 +35,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -88,15 +88,15 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        Yii::$app->setHomeUrl(['site/index']);
+        Yii::$app->setHomeUrl(['user/index']);
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect(['site/index']);
+            return $this->redirect(['user/index']);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
-            return $this->redirect(['site/index']);
+            return $this->redirect(['user/index']);
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -172,7 +172,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout(false);
-        return $this->goHome();
+        return $this->redirect(['site/login']);
     }
 
     /**
