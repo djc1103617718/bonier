@@ -13,7 +13,7 @@ use yii\helpers\Url;
 </style>
 <header class="main-header" style="position: fixed;width:100%;">
 
-    <?= Html::a('<span class="logo-mini">USER</span><span class="logo-lg">' . '商户管理中心'/*Yii::$app->name*/ . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">USER</span><span class="logo-lg">' . '后台管理中心'/*Yii::$app->name*/ . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
