@@ -17,6 +17,13 @@ class Activity extends \common\models\Activity
         return $rules;
     }
 
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['products'] ='参加活动的商品';
+        return $labels;
+    }
+
     public function productList()
     {
         return Product::find()
