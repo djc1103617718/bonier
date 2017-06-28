@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="index_slider" name="头部轮播图">
 			<ul class="rslides" id="slider">
 				<?php if ($mold && !empty($mold['top_carousels'])){
-					$baseUrl = 'http://localhost:8081/bonier/frontend/web/';
+					$baseUrl = Yii::$app->params['frontend_host'] . '/';
 					foreach ($mold['top_carousels'] as $url) {
 						echo "<li><img src=$baseUrl$url class='img-responsive' alt=''/></li>";
 					}
