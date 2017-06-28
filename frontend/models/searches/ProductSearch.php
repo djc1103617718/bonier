@@ -50,7 +50,8 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $user_id = Yii::$app->user->id;
+        $query = Product::find()->where(['user_id' => $user_id]);
 
         // add conditions that should always apply here
 
