@@ -38,8 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => '商品图片',
                 'format' => 'raw',
                 'value' => \yii\helpers\ArrayHelper::getValue($model, function ($model) {
-                    $url = \frontend\models\Media::findOne($model->media_id)->url;
-                    return "<img style='height: 100px; width: 100px' src='$url'/>";
+                    if ($model->media_id) {
+                        $url = \frontend\models\Media::findOne($model->media_id)->url;
+                        return "<img style='height: 100px; width: 100px' src='$url'/>";
+                    }
                 })
             ],
             [
