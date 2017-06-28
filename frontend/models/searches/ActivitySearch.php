@@ -51,7 +51,7 @@ class ActivitySearch extends Activity
      */
     public function search($params)
     {
-        $query = Activity::find();
+        $query = Activity::find()->where(['user_id' => Yii::$app->user->id]);
 
         // add conditions that should always apply here
 

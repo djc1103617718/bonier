@@ -50,7 +50,7 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find();
+        $query = Order::find()->where(['user_id' => Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
