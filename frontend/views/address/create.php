@@ -6,8 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Address */
 
-$this->title = 'Create Address';
-$this->params['breadcrumbs'][] = ['label' => 'Addresses', 'url' => ['index']];
+$this->title = '添加店铺信息';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="address-create">
