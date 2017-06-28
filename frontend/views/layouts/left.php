@@ -47,6 +47,7 @@
                         'options' => ['style' => 'font-size:18px'],
                         'items' => [
                             ['label' => '商品列表', 'url' => ['product/index'],],
+                            ['label' => '添加商品', 'url' => ['product/create'],],
                         ],
                     ],
                     [
