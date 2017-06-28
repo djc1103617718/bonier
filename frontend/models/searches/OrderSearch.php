@@ -2,6 +2,7 @@
 
 namespace frontend\models\searches;
 
+use frontend\models\Activity;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -50,7 +51,8 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find()->where(['user_id' => Yii::$app->user->id]);
+        $activity_ids = Activity::find()->select('id')->where(['user_id' => Yii::$app->user->id])->column();
+        $query = Order::find()->where(['act_id' => $activity_ids]);
 
         // add conditions that should always apply here
 
