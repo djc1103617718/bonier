@@ -17,21 +17,6 @@ use yii\filters\VerbFilter;
 class AddressController extends BaseController
 {
     /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
      * Displays a single Address model.
      * @return mixed
      */

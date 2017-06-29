@@ -73,8 +73,8 @@ SearchAsset::register($this);
             }
         });
     })
-</script>
--->
+</script>-->
+
 <?php
 $this->registerJs('
     $(function () {

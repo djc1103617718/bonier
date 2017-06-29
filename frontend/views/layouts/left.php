@@ -90,6 +90,7 @@
                             ['label' => '轮播图上传', 'url' => ['upload/top-carousel'],],
                             ['label' => '商品图片上传', 'url' => ['upload/product-img']],
                             ['label' => '门店地址图片上传', 'url' => ['upload/address-img']],
+                            ['label' => '图片列表', 'url' => ['media/index']],
 
                         ]
                     ],

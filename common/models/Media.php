@@ -70,7 +70,7 @@ class Media extends \yii\db\ActiveRecord
             //'name' => 'Name',
             //'description' => 'Description',
             'user_id' => '商户名称',
-            'category' => '媒体类别',
+            'category' => '类别',
             'type' => '文件类型',
             'url' => '图片',
             'created_at' => '上传时间',

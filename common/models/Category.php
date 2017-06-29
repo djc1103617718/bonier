@@ -22,11 +22,11 @@ use yii\base\Model;
 class Category extends Model
 {
     // 用于商品图片的文件
-    const CATEGORY_PRODUCT_IMG = 'product_img';
+    const CATEGORY_PRODUCT_IMG = '商品图片';
     // 店铺地址图片
-    const CATEGORY_ADDRESS_IMG = 'address_img';
+    const CATEGORY_ADDRESS_IMG = '店铺地址图片';
     // 顶部轮播图
-    const CATEGORY_TOP_CAROUSEL = 'top_carousel';
+    const CATEGORY_TOP_CAROUSEL = '顶部轮播图';
 
     /**
      * 媒体文件分类list

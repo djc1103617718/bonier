@@ -18,7 +18,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/dropdown.js',
         'dialog/js/dialog-plus-min.js',
-        'js/jquery.cookie.js',
+        //'js/jquery.cookie.js',
         'dialog/js/dialog-instance.js',
     ];
     public $depends = [
