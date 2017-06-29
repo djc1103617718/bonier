@@ -78,6 +78,7 @@ SearchAsset::register($this);
 <?php
 $this->registerJs('
     $(function () {
+        $(".dropdown-toggle").dropdown();
         $(".search_li").click(function(){
             var label = $(this).text();
             var value = $(this).attr("val");

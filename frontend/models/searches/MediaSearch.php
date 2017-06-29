@@ -27,7 +27,7 @@ class MediaSearch extends Media
     public static function searchAttributes()
     {
         return [
-            '图片分类' => 'category',
+            '类别' => 'category',
         ];
     }
 
