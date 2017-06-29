@@ -6,6 +6,8 @@ use Yii;
 
 class User extends \common\models\User
 {
+    public $password;
+
     public function rules()
     {
         return [
@@ -16,8 +18,20 @@ class User extends \common\models\User
             ['phone', 'string', 'min' => 11],
             ['phone', 'string', 'max' => 11],
             ['phone', 'filter', 'filter' => 'trim'],
-            ['phone', 'unique', 'targetClass' => '\common\models\User', 'message' => '手机号已被使用'],
+            ['phone', 'unique', 'targetClass' => '\common\models\User', 'message' => '手机号已被使用', 'on' => 'create'],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = [
+            'deadline', 'shop_name', 'referrals', 'phone',
+        ];
+        $scenarios['update'] = [
+            'deadline', 'shop_name', 'referrals', 'phone'
+        ];
+        return $scenarios;
     }
 
     /**
@@ -28,8 +42,8 @@ class User extends \common\models\User
         if (!$this->validate()) {
             return false;
         }
-        $this->username = $this->generateUsername();
-        $this->password = $this->generatePassword();
+        $this->username = $this->phone;
+        $this->password = '12345678';
         $this->password_hash = Yii::$app->security->generatePasswordHash($this->password);
         if (!$this->save()) {
             return false;

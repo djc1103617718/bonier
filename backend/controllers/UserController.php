@@ -64,7 +64,7 @@ class UserController extends BaseController
     public function actionCreate()
     {
         $model = new User();
-
+        $model->scenario = 'create';
         if ($model->load(Yii::$app->request->post()) && $model->create()) {
             Yii::$app->session->setFlash('success', '创建成功!');
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +84,7 @@ class UserController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->scenario = 'update';
         if ($model->load(Yii::$app->request->post()) && $model->update()) {
             Yii::$app->session->setFlash('success', '更新成功!');
             return $this->redirect(['view', 'id' => $model->id]);

@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'shop_name',
             'username',
-            'password',
+            //'password',
             //'password_hash',
             //'password_reset_token',
             'email:email',

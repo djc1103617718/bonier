@@ -12,7 +12,6 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property string $shop_name
  * @property string $username
- * @property string $password
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
@@ -58,14 +57,13 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['shop_name', 'username', 'password', 'password_hash', 'deadline'], 'required'],
+            [['shop_name', 'username', 'password_hash', 'deadline'], 'required'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'string'],
             [['deadline'], 'safe'],
             ['phone', 'string', 'max' => 11],
             [['shop_name'], 'string', 'max' => 256],
             [['username'], 'string', 'max' => 50],
-            [['password'], 'string', 'max' => 48],
             [['password_hash'], 'string', 'max' => 80],
             [['password_reset_token', 'email', 'auth_key'], 'string', 'max' => 60],
             [['username'], 'unique'],
@@ -84,7 +82,6 @@ class User extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'shop_name' => Yii::t('app', '商店名称'),
             'username' => Yii::t('app', '用户名'),
-            'password' => Yii::t('app', '密码'),
             'password_hash' => Yii::t('app', 'Password Hash'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),
             'email' => Yii::t('app', '邮箱'),
