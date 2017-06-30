@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use yii\helpers\Url;
 ?>
 <!DOCTYPE HTML>
@@ -7,7 +7,7 @@ use yii\helpers\Url;
 <title>我的商品列表</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="<?=Url::to('@web/css/bootstrap.css', true)?>" rel='stylesheet' type='text/css' />
@@ -52,47 +52,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?=Url::to('@web/js/jquery.countdown.js', true)?>"></script>
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
-<body onload="time_fun()" style="background:#FF7575">
-	<div class="container">
+<body onload="time_fun()" style="background:#217307">
+	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider">
 			<ul class="rslides" id="slider">
 				<?php if ($topCarousels){
 					$baseUrl = Yii::$app->params['frontend_host'] . '/';
 					foreach ($topCarousels as $url) {
-						echo "<li><img src=$baseUrl$url class='img-responsive' alt=''/></li>";
+						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:400px' alt=''/></li>";
 					}
 				} else {?>
-					<li><img src="<?=Url::to('@web/images/picture1.jpg', true)?>" class="img-responsive" alt=""/></li>
-					<li><img src="<?=Url::to('@web/images/picture2.jpg', true)?>" class="img-responsive" alt=""/></li>
-					<li><img src="<?=Url::to('@web/images/picture3.jpg', true)?>" class="img-responsive" alt=""/></li>
+					<li><img src="<?=Url::to('@web/images/picture1.jpg', true)?>" class="img-responsive" style="width:100%;height:400px" alt=""/></li>
+					<li><img src="<?=Url::to('@web/images/picture2.jpg', true)?>" class="img-responsive" style="width:100%;height:400px" alt=""/></li>
+					<li><img src="<?=Url::to('@web/images/picture3.jpg', true)?>" class="img-responsive" style="width:100%;height:400px" alt=""/></li>
 				<?php } ?>
 			</ul>
 		</div>
 	</div>
 
-	<div class="container">
-		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="70" bgcolor="#CE0000" vspace="10">
+	<div class="container" style="padding-left:5px;padding-right:5px">
+		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="70" bgcolor="#2b9c4a" vspace="10"><font color="#ffffff">
 			央视网消息（新闻联播）：国家主席习近平19日在人民大会堂集体会见来华出席金砖国家外长会晤的俄罗斯外长拉夫罗夫、南非外长马沙巴内、巴西外长努内斯、印度外交国务部长辛格。
 		</marquee>
 	</div>
 
-	<div class="container">
-		<div align="center" style="background:#CE0000">
+	<div class="container" style="padding-left:5px;padding-right:5px">
+		<div align="center" style="background: #2b9c4a"><font color="#ffffff">
 			<h3> 活动结束时间: </h3>
 			<ul id="countdown">
 			</ul>
-			<ul class="navigation">
+			<ul class="navigation" style="margin-top:-10px">
 				<li>
-					<p class="timeRefDays">DAYS</p>
+					<p class="timeRefDays"  style="color:#ffffff">DAYS</p>
 				</li>
 				<li>
-					<p class="timeRefHours">HOURS</p>
+					<p class="timeRefHours" style="color:#ffffff">HOURS</p>
 				</li>
 				<li>
-					<p class="timeRefMinutes">MINUTES</p>
+					<p class="timeRefMinutes" style="color:#ffffff">MINUTES</p>
 				</li>
 				<li>
-					<p class="timeRefSeconds">SECONDS</p>
+					<p class="timeRefSeconds" style="color:#ffffff">SECONDS</p>
 				</li>
 			</ul>
 		</div>
@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$product_img = isset($userProductImgList[$myProduct['media_id']])?$userProductImgList[$myProduct['media_id']]:null;
 						echo '<div class="col-md-3 span_6">';
 						echo '<div class="box_inner">';
-						echo "<img src='$base_url/$product_img' class='img-responsive' alt=''/>";
+						echo "<img src='$base_url/$product_img' class='img-responsive' style="height:320px;width:100%" alt=''/>";
 						echo '<div class="sale-box"> </div>';
 						echo '<div class="desc">';
 						$bargained_num = $orders[$myProduct['id']]['bargained_num'];
@@ -160,4 +160,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $activity['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
-</html>		
+</html>
