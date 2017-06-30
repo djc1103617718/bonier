@@ -131,11 +131,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			echo '<div class="container stamp" style="margin-top:10px;padding-left:5px;padding-right:5px;width:100%">';
 			echo '<div style="background:#ffffff;padding-top:5px;padding-bottom:5px;margin-top:3px;">';
 			echo "<img src='$baseUrl$url' style='float:left;margin-left:5px' height='100px' width='100px'>";
-			echo "<p style='color:#000'>{$product['name']}</p>";
-			echo "<p style='color:#000;font-size:10px;margin-top:10px'>{$product['participants']}人参与，剩{$product['lave_num']}件</p>";
+			echo "<p style='padding-left:115px;color:#000'>{$product['name']}</p>";
+			echo "<p style='padding-left:115px;color:#000;font-size:10px;margin-top:10px'>{$product['participants']}人参与，剩{$product['lave_num']}件</p>";
 			$start_price = $product['start_price']/100;
 			$reserve_price = $product['reserve_price']/100;
-			echo "<p style='color:#000;font-size:10px'>零售价：{$start_price}元</p>";
+			echo "<p style='padding-left:115px;color:#000;font-size:10px'>零售价：{$start_price}元</p>";
 			echo '<ul class="list2" style="margin-top:10px;padding-right:10px">';
 			$join_url = \yii\helpers\Url::to(['join/index', 'id' => $mold['id'], 'product_id' => $product['id']]);
 			echo "<li class='list2_left'><a class='acount-btn' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em;background:#f71b1b'>底价{$reserve_price}元</a></li></li>";

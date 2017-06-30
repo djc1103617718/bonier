@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h5><strong><?=$shop_name?></strong></h5>
 				<p><font size="1" face="Verdana">电话：<?=$address['Landline']. ' ' . $address['phone']?></font></p>
 				<p><font size="1" face="Verdana">地址：<?=$address['address']?></font></p>
-				<h4 class="title"></h4>
+				<h4 class="title" style="margin-top:30px"></h4>
 			 </div>
 		 </div>
 	</div>
