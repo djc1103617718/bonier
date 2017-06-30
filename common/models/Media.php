@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property string $category
  * @property integer $type
  * @property string $url
+ * @property string $name
  * @property string $created_at
  * @property string $updated_at
  */
@@ -57,6 +58,7 @@ class Media extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['url'], 'string', 'max' => 256],
             [['category'], 'string', 'max' => 64],
+            ['name', 'string', 'max' => 256]
         ];
     }
 
@@ -67,7 +69,7 @@ class Media extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            //'name' => 'Name',
+            'name' => '文件原名',
             //'description' => 'Description',
             'user_id' => '商户名称',
             'category' => '类别',

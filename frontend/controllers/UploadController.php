@@ -45,27 +45,12 @@ class UploadController extends  BaseController
      * 单文件上传
      */
     public function actionProductImg(){
-        $model= new Upload();
-        $web_rout = Yii::getAlias('@frontend') . '/web';
-        if (Yii::$app->request->isPost) {
-            $file = UploadedFile::getInstance($model, 'file');
-            $user_id = Yii::$app->user->id;
-            $rand = rand(0,9) . $user_id . rand(10, 99);
-            $model->url = 'upload/' . date("YmdHis",time()) . $rand . '.' . $file->getExtension();
-            if ($file && $model->validate()) {
-                $fileName = $web_rout . '/' . $model->url;
-                if ($file->saveAs($fileName)) {
-                    if ($media = $model->saveProductImg()) {
-                        Yii::$app->session->setFlash('success','上传成功！');
-                        return $this->redirect(['view', 'id' => $media->id]);
-                    }
-                }
-            }
+        if (Yii::$app->request->isPost && !empty($_FILES)) {
+            $this->saveFiles('saveProductImg');
         }
 
         return $this->render('create',[
-            'model'=>$model,
-            'title' => '商品图片上传',
+            'title' => '商品图上传',
             'action' => 'upload/product-img'
         ]);
     }
@@ -76,55 +61,64 @@ class UploadController extends  BaseController
      * 单文件上传
      */
     public function actionAddressImg(){
-        $model= new Upload();
-        $web_rout = Yii::getAlias('@frontend') . '/web';
-        if (Yii::$app->request->isPost) {
-            $file = UploadedFile::getInstance($model, 'file');
-            $user_id = Yii::$app->user->id;
-            $rand = rand(0,9) . $user_id . rand(10, 99);
-            $model->url = 'upload/' . date("YmdHis",time()) . $rand . '.' . $file->getExtension();
-            if ($file && $model->validate()) {
-                $fileName = $web_rout . '/' . $model->url;
-                if ($file->saveAs($fileName)) {
-                    if ($media = $model->saveAddressImg()) {
-                        Yii::$app->session->setFlash('success','上传成功！');
-                        return $this->redirect(['view', 'id' => $media->id]);
-                    }
-                }
-            }
+        if (Yii::$app->request->isPost && !empty($_FILES)) {
+            $this->saveFiles('saveAddressImg');
         }
 
         return $this->render('create',[
-            'model'=>$model,
-            'title' => '店铺地址图片上传',
+            'title' => '店铺地址图上传',
             'action' => 'upload/address-img'
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function actionTopCarousel(){
-        $model= new Upload();
-        $web_rout = Yii::getAlias('@frontend') . '/web';
-        if (Yii::$app->request->isPost) {
-            $file = UploadedFile::getInstance($model, 'file');
-            $user_id = Yii::$app->user->id;
-            $rand = rand(0,9) . $user_id . rand(10, 99);
-            $model->url = 'upload/' . date("YmdHis",time()) . $rand . '.' . $file->getExtension();
-            if ($file && $model->validate()) {
-                $fileName = $web_rout . '/' . $model->url;
-                if ($file->saveAs($fileName)) {
-                    if ($media = $model->saveTopCarousel()) {
-                        Yii::$app->session->setFlash('success','上传成功！');
-                        return $this->redirect(['view', 'id' => $media->id]);
-                    }
-                }
-            }
+        if (Yii::$app->request->isPost && !empty($_FILES)) {
+            $this->saveFiles('saveTopCarousel');
         }
 
         return $this->render('create',[
-            'model'=>$model,
             'title' => '顶部轮播图上传',
             'action' => 'upload/top-carousel'
         ]);
+    }
+
+    /**
+     * @param $saveType
+     * @return \yii\web\Response
+     */
+    private function saveFiles($saveType)
+    {
+        $web_rout = Yii::getAlias('@frontend') . '/web';
+        $user_id = Yii::$app->user->id;
+        $files = $_FILES['upload'];
+        $fileNum = count($files['name']);
+        for ($i = 0; $i < $fileNum; $i++) {
+            if ($files['size'][$i] > 2048000) {
+                Yii::$app->session->setFlash('error', '文件大小不能超过2M');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+            $tmpFile = $files['tmp_name'][$i];
+            $nameArr = explode('.', $files['name'][$i]);
+            $extension = $nameArr[1];
+            $rand = rand(0,9) . $user_id . rand(10, 99);
+            $url = 'upload/' . date("YmdHis",time()) . $rand . '.' . $extension;
+            $saveUrl = $web_rout . '/' . $url;
+            if (move_uploaded_file($tmpFile, $saveUrl)) {
+                $upload = new Upload();
+                if (!$upload->$saveType($files['name'][$i], $url)) {
+                    Yii::$app->session->setFlash('error', '文件:' . $files['name'][$i] . '上传失败!');
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            } else {
+                Yii::$app->session->setFlash('error', '文件:' . $files['name'][$i] . '上传失败!');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+        }
+        return $this->redirect(['media/index']);
     }
 
     /**

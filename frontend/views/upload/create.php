@@ -8,37 +8,30 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '文件列表'), 'url
 ?>
 
 <h1><?= Html::encode($this->title) ?></h1>
-<?php $form=ActiveForm::begin([
-    'action' => [$action],
-    'method' => 'post',
-    'id'=>'upload',
-    'options'=>['enctype' => "multipart/form-data", 'multiple' => 'multiple']
-]);
-?>
-<?= $form->field($model, 'file')->fileInput();?>
-<?=  Html::submitButton('上传', ['class'=>'btn btn-primary','name' =>'submit-button']) ?>
-<?php ActiveForm::end(); ?>
-<!--
-<form action="/example/html5/demo_form.asp" method="get" id="form2">
-    选择图片：<input type="file" id="input" name="input" onchange="onc()" multiple="multiple" />
-    <p> </p>
+
+
+<form action="<?=\yii\helpers\Url::to([$action])?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf-frontend" value="<?=Yii::$app->request->getCsrfToken()?>"/>
+    选择图片：<input type="file" id="input" name="upload[]" onchange="onc()" multiple="multiple" />
+    <p id='fileTips'> </p>
     <input type="submit" />
 </form>
 
 <script type="text/javascript">
     function onc(){
         var files = document.getElementById("input").files;
-        var filenames = '';
+        var fileNames = '';
         for(var i=0; i< files.length; i++){
-            if (filenames == '') {
-                filenames += input.files[i].name;
+            if (fileNames == '') {
+                fileNames += '您上传的文件:' + input.files[i].name;
             } else {
-                filenames
+                fileNames += ',' + input.files[i].name;
             }
-            alert(input.files[i].name);
+            $('#fileTips').text(fileNames);
+            //alert(input.files[i].name);
         }
     }
-</script>-->
+</script>
 
 <script type="text/javascript">
     /*$(function() {

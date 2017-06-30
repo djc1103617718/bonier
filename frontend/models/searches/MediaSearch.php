@@ -20,7 +20,7 @@ class MediaSearch extends Media
     {
         return [
             [['id', 'user_id', 'type'], 'integer'],
-            [['category', 'url', 'created_at', 'updated_at'], 'safe'],
+            [['category', 'url', 'created_at', 'updated_at', 'name'], 'safe'],
         ];
     }
 
@@ -28,6 +28,7 @@ class MediaSearch extends Media
     {
         return [
             '类别' => 'category',
+            '文件原名' => 'name',
         ];
     }
 
@@ -55,6 +56,11 @@ class MediaSearch extends Media
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
         ]);
 
         $this->load($params);
@@ -75,6 +81,7 @@ class MediaSearch extends Media
         ]);
 
         $query->andFilterWhere(['like', 'category', $this->category])
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;

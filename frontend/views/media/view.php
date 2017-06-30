@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             //'user_id',
             'category',
+            'name',
             //'type',
             [
                 'attribute' => 'url',

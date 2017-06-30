@@ -31,13 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             //'user_id',
             'category',
-            [
+            'name',
+            /*[
                 'attribute' => 'url',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return "<img src='{$model->url}'/>";
                 }
-            ],
+            ],*/
             'created_at',
             // 'updated_at',
 
