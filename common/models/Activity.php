@@ -14,12 +14,16 @@ use yii\db\ActiveRecord;
  * @property string $start_time
  * @property string $end_time
  * @property integer $user_id
+ * @property integer $status
  * @property string $announcement
  * @property string $created_at
  * @property string $updated_at
  */
 class Activity extends \yii\db\ActiveRecord
 {
+    const STATUS_NORMAL = 1;
+    const STATUS_DELETE = 0;
+
     /**
      * @inheritdoc
      */
@@ -52,7 +56,7 @@ class Activity extends \yii\db\ActiveRecord
         return [
             [['start_time', 'end_time'], 'required'],
             [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
-            [['user_id'], 'integer'],
+            [['user_id', 'status'], 'integer'],
             [['name'], 'string', 'max' => 128],
             ['announcement', 'string', 'max' => 356],
         ];
@@ -69,6 +73,7 @@ class Activity extends \yii\db\ActiveRecord
             'start_time' => '开始时间',
             'end_time' => '结束时间',
             'user_id' => '创建活动的用户',
+            'status' => '状态',
             'announcement' => '公告',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',

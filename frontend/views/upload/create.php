@@ -12,12 +12,33 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '文件列表'), 'url
     'action' => [$action],
     'method' => 'post',
     'id'=>'upload',
-    'options'=>['enctype' => "multipart/form-data"]
+    'options'=>['enctype' => "multipart/form-data", 'multiple' => 'multiple']
 ]);
 ?>
 <?= $form->field($model, 'file')->fileInput();?>
 <?=  Html::submitButton('上传', ['class'=>'btn btn-primary','name' =>'submit-button']) ?>
 <?php ActiveForm::end(); ?>
+<!--
+<form action="/example/html5/demo_form.asp" method="get" id="form2">
+    选择图片：<input type="file" id="input" name="input" onchange="onc()" multiple="multiple" />
+    <p> </p>
+    <input type="submit" />
+</form>
+
+<script type="text/javascript">
+    function onc(){
+        var files = document.getElementById("input").files;
+        var filenames = '';
+        for(var i=0; i< files.length; i++){
+            if (filenames == '') {
+                filenames += input.files[i].name;
+            } else {
+                filenames
+            }
+            alert(input.files[i].name);
+        }
+    }
+</script>-->
 
 <script type="text/javascript">
     /*$(function() {

@@ -13,6 +13,21 @@ use yii\web\UploadedFile;
 class UploadController extends  BaseController
 {
     /**
+     * Lists all FileUpdateUpload models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new FileUpdateUploadSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            //'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single FileUpdateUpload model.
      * @param integer $id
      * @return mixed

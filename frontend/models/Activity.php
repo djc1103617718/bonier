@@ -99,7 +99,8 @@ class Activity extends \common\models\Activity
             if (!$product) {
                 throw new Exception('更新失败!');
             }
-            if (!$this->delete()) {
+            $this->status = Activity::STATUS_DELETE;
+            if (!$this->update()) {
                 throw new Exception('删除失败!');
             };
             $transaction->commit();
