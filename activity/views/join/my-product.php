@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$product_img = isset($userProductImgList[$myProduct['media_id']])?$userProductImgList[$myProduct['media_id']]:null;
 						echo '<div class="col-md-3 span_6">';
 						echo '<div class="box_inner">';
-						echo "<img src='$base_url/$product_img' class='img-responsive' style="height:320px;width:100%" alt=''/>";
+						echo "<img src='$base_url/$product_img' class='img-responsive' style='height:320px;width:100%' alt=''/>";
 						echo '<div class="sale-box"> </div>';
 						echo '<div class="desc">';
 						$bargained_num = $orders[$myProduct['id']]['bargained_num'];
