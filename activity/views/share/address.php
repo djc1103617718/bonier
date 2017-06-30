@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="wishlist">
 			  	<h4 class="title" align="center">门店地址</h4>
 				<?php $address_url = Yii::$app->params['frontend_host'] . '/' . $address['media_img'];?>
-				<img class="image" src=<?=$address_url?> style="float:left;margin-right:10px" height="100px" width="100px" />
+				<img src=<?=$address_url?> style="float:left;margin-right:10px" height="100px" width="100px" />
 				<h5><strong><?=$shop_name?></strong></h5>
 				<p><font size="1" face="Verdana">电话：<?=$address['Landline']. ' ' . $address['phone']?></font></p>
 				<p><font size="1" face="Verdana">地址：<?=$address['address']?></font></p>
