@@ -130,8 +130,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			echo '<div class="container stamp" style="padding-left:5px;padding-right:5px;width:100%">';
 			echo '<div style="background:#ffffff;padding-top:5px;padding-bottom:5px;margin-top:3px;">';
 			echo '<img src="$baseUrl$url" style="float:left;margin-left:5px;margin-right:10px" height="100px" width="120px">';
-			echo '<p style="color:#000">{$product['name']}</p>';
-			echo '<p style="color:#000;font-size:10px;margin-top:10px">{$product['participants']}人参与，剩{$product['lave_num']}件</p>';
+			echo "<p style='color:#000'>{$product['name']}</p>";
+			echo "<p style='color:#000;font-size:10px;margin-top:10px'>{$product['participants']}人参与，剩{$product['lave_num']}件</p>";
 			$start_price = $product['start_price']/100;
 			$reserve_price = $product['reserve_price']/100;
 			echo '<p style="color:#000;font-size:10px">零售价：{$start_price}元</p>';
