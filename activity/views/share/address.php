@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use yii\helpers\Url;
 ?>
 <!DOCTYPE HTML>
@@ -7,7 +7,7 @@ use yii\helpers\Url;
 <title>领取地址</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="<?=Url::to('@web/css/bootstrap.css', true)?>" rel='stylesheet' type='text/css' />
@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="wishlist">
 			  	<h4 class="title" align="center">门店地址</h4>
 				<?php $address_url = Yii::$app->params['frontend_host'] . '/' . $address['media_img'];?>
-				<img class="image" src=<?=$address_url?> style="float:left;margin-right:10px" height="80px" width="100px" />
+				<img class="image" src=<?=$address_url?> style="float:left;margin-right:10px" height="100px" width="100px" />
 				<h5><strong><?=$shop_name?></strong></h5>
 				<p><font size="1" face="Verdana">电话：<?=$address['Landline']. ' ' . $address['phone']?></font></p>
 				<p><font size="1" face="Verdana">地址：<?=$address['address']?></font></p>
@@ -65,4 +65,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $act_id])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
-</html>		
+</html>

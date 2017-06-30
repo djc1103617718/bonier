@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use yii\helpers\Url;
 ?>
 <!DOCTYPE HTML>
@@ -7,7 +7,7 @@ use yii\helpers\Url;
 <title>所有商品</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="<?=Url::to('@web/css/bootstrap.css', true)?>" rel='stylesheet' type='text/css' />
@@ -22,9 +22,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		background-color: rgba(0,0,0,0.5);
 		text-align: center;
 	}
-</style>
-<style>
-	.image{width:50px;height:50px;border-radius:100px}
+	.stamp {
+	  position: absolute;
+	  display: inline-block;
+	  padding: 10px;
+	  position: relative;
+	  background: radial-gradient( transparent 0px, transparent 4px, white 4px, white );
+	  background-size: 20px 20px;
+	  background-position: -10px -10px;
+	}
+	.stamp:after {
+	  content: '';
+	  position: absolute;
+	  left: 5px;
+	  top: 5px;
+	  right: 5px;
+	  bottom: 5px;
+	  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+	  z-index: -1;
+	}
 </style>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
@@ -55,169 +71,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?=Url::to('@web/js/jquery.countdown.js', true)?>"></script>
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
-<body onload="time_fun()" style="background:#FF7575">
-	<div class="container">
+<body onload="time_fun()" style="background:#217307">
+	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider" name="头部轮播图">
 			<ul class="rslides" id="slider">
 				<?php if ($mold && !empty($mold['top_carousels'])){
 					$baseUrl = Yii::$app->params['frontend_host'] . '/';
 					foreach ($mold['top_carousels'] as $url) {
-						echo "<li><img src=$baseUrl$url class='img-responsive' alt=''/></li>";
+						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:400px' alt=''/></li>";
 					}
 				} else {?>
-					<li><img src="<?=Url::to('@web/images/picture1.jpg', true)?>" class="img-responsive" alt=""/></li>
-					<li><img src="<?=Url::to('@web/images/picture2.jpg', true)?>" class="img-responsive" alt=""/></li>
-					<li><img src="<?=Url::to('@web/images/picture3.jpg', true)?>" class="img-responsive" alt=""/></li>
+					<li><img src="<?=Url::to('@web/images/picture1.jpg', true)?>" style="width:100%;height:400px" class="img-responsive" alt=""/></li>
+					<li><img src="<?=Url::to('@web/images/picture2.jpg', true)?>" style="width:100%;height:400px" class="img-responsive" alt=""/></li>
+					<li><img src="<?=Url::to('@web/images/picture3.jpg', true)?>" style="width:100%;height:400px" class="img-responsive" alt=""/></li>
 				<?php } ?>
 			</ul>
 		</div>
 	</div>
 
-	<div class="container">
-		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="70" bgcolor="#CE0000" vspace="10">
+	<div class="container" style="padding-left:5px;padding-right:5px">
+		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="70" bgcolor="#2b9c4a" vspace="10"><font color="#ffffff">
 			央视网消息（新闻联播）：国家主席习近平19日在人民大会堂集体会见来华出席金砖国家外长会晤的俄罗斯外长拉夫罗夫、南非外长马沙巴内、巴西外长努内斯、印度外交国务部长辛格。
 		</marquee>
 	</div>
 
-	<div class="container">
-		<div align="center" style="background:#CE0000">
+	<div class="container" style="padding-left:5px;padding-right:5px">
+		<div align="center" style="background: #2b9c4a"><font color="#ffffff">
 			<h3> 活动结束时间: </h3>
 			<ul id="countdown">
 			</ul>
-			<ul class="navigation">
+			<ul class="navigation" style="margin-top:-10px">
 				<li>
-					<p class="timeRefDays">DAYS</p>
+					<p class="timeRefDays"  style="color:#ffffff">DAYS</p>
 				</li>
 				<li>
-					<p class="timeRefHours">HOURS</p>
+					<p class="timeRefHours" style="color:#ffffff">HOURS</p>
 				</li>
 				<li>
-					<p class="timeRefMinutes">MINUTES</p>
+					<p class="timeRefMinutes" style="color:#ffffff">MINUTES</p>
 				</li>
 				<li>
-					<p class="timeRefSeconds">SECONDS</p>
+					<p class="timeRefSeconds" style="color:#ffffff">SECONDS</p>
 				</li>
 			</ul>
-			<h3> <?=$mold['pageviews']?> </h3>
 		</div>
 	</div>
 
-	<div class="content_top">
-		<div class="container">
-			<div class="grid_2">
-				<?php if (empty($mold['products'])) { ?>
-				<!--<div class="col-md-3 span_6">
-				  <div class="box_inner">
-					<img src="images/picture8.jpg" class="img-responsive" alt=""/>
-					 <div class="sale-box"> </div>
-					 <div class="desc">
-						<p>0参与，剩0件</p>
-						<p>零售价：xxx元</p>
-						<ul class="list2">
-						  <li class="list2_right"><span class="m_1"><a href="<?/*=Url::to('@web/js/script.js', true)*/?>" class="link">我要参与</a></span></li>
-						  <li class="list2_left"><span class="m_2"><a class="link1">底价0元</a></span></li>
-						  <div class="clearfix"> </div>
-						</ul>
-					 </div>
-				   </div>
-				</div>-->
-				<?php } else {
-					$i = 0;
-					foreach ($mold['products'] as $index => $product) {
-						if ($i >5) {
-							break;
-						}
-						$url = isset($userProductImgList[$product['media_id']]) ? $userProductImgList[$product['media_id']]:null;
-						echo '<div class="col-md-3 span_6">';
-						echo '<div class="box_inner">';
-						echo "<img src='$baseUrl$url' class='img-responsive' alt=''/>";
-						echo '<div class="sale-box"> </div>';
-						echo '<div class="desc">';
-						echo "<p>{$product['participants']}人参与，剩{$product['lave_num']}件</p>";
-						$start_price = $product['start_price']/100;
-						$reserve_price = $product['reserve_price']/100;
-						echo "<p>零售价：{$start_price}元</p>";
-						echo '<ul class="list2">';
-						$join_url = \yii\helpers\Url::to(['join/index', 'id' => $mold['id'], 'product_id' => $product['id']]);
-						echo "<li class='list2_right'><span class='m_1'><a href='{$join_url}' class='link'>我要参与</a></span></li>";
-						echo "<li class='list2_left'><span class='m_2'><a class='ink1'>底价{$reserve_price}元</a></span></li>";
-						$i++;
-						echo '<div class="clearfix"> </div></ul></div></div></div>';
-					}
-				}?>
-
-				<div class="clearfix"> </div>
-			</div>
-
+	<div class="container" style="margin-top:10px;padding-left:5px;padding-right:5px">
+		<div align="center" style="background: #2b9c4a"><font color="#ffffff">
+			<h3 > 访问量:<?=$mold['pageviews']?>  </h3>
 		</div>
 	</div>
-	<div class="content_middle">
-		<div class="container">
-			<ul class="promote">
-				<i class="promote_icon"> </i>
-				<li class="promote_head"><h3>Promotion</h3></li>
-			</ul>
-			 <ul id="flexiselDemo3">
-				 <?php
-				 if (count($mold['products']) > 6) {
-					 $i = 6;
-					 foreach ($mold['products'] as $index => $product) {
-						 $url = isset($userProductImgList[$product['media_id']]) ? $userProductImgList[$product['media_id']]:null;
 
-						 echo "<li><img src='$baseUrl$url'  class='img-responsive' />";
-						 echo '<div class="grid-flex">';
-						 $start_price = $product['start_price']/100;
-						 $reserve_price = $product['reserve_price']/100;
-						 $join_url = \yii\helpers\Url::to(['join/index']);
-						 echo "<h4>{$product['participants']}人参与，剩{$product['lave_num']}件，零售价：{$start_price}元 </h4><p>底价：{$reserve_price}元</p>";
-						 echo "<div class='m_3'><a href='{$join_url}' class='link2'>我要参与</a></div>";
-						 echo '<div class="ticket"> </div>';
-						 echo '</div>';
-						 echo '</li>';
-					 }
+	<?php if (empty($mold['products'])) { ?>
+	<?php } else {
+		foreach ($mold['products'] as $index => $product) {
+			$url = isset($userProductImgList[$product['media_id']]) ? $userProductImgList[$product['media_id']]:null;
+			echo '<div class="container stamp" style="padding-left:5px;padding-right:5px;width:100%">';
+			echo '<div style="background:#ffffff;padding-top:5px;padding-bottom:5px;margin-top:3px;">';
+			echo '<img src="$baseUrl$url" style="float:left;margin-left:5px;margin-right:10px" height="100px" width="120px">';
+			echo '<p style="color:#000">{$product['name']}</p>';
+			echo '<p style="color:#000;font-size:10px;margin-top:10px">{$product['participants']}人参与，剩{$product['lave_num']}件</p>';
+			$start_price = $product['start_price']/100;
+			$reserve_price = $product['reserve_price']/100;
+			echo '<p style="color:#000;font-size:10px">零售价：{$start_price}元</p>';
+			echo '<ul class="list2" style="margin-top:10px;padding-right:10px">';
+			$join_url = \yii\helpers\Url::to(['join/index', 'id' => $mold['id'], 'product_id' => $product['id']]);
+			echo '<li class="list2_left"><a class="acount-btn" style="margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em;background:#f71b1b">底价{$reserve_price}元</a></li></li>';
+			echo '<li class="list2_right"><a class="acount-btn" href="{$join_url}" style="margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em">我要参与</a></li></li>';
+			echo '<div class="clearfix"> </div></ul></div></div>';
+		}
+	}?>
 
-				 }?>
-<!--				<li><img src="images/n5.jpg"  class="img-responsive" />-->
-<!--					<div class="grid-flex">-->
-<!--						<h4>1525人参与，剩41件，零售价：99元 </h4><p>底价：8元</p>-->
-<!--					<div class="m_3"><a href="bargain_page.html" class="link2">我要参与</a></div>-->
-<!--					<div class="ticket"> </div>-->
-<!--					</div>-->
-<!--				</li>-->
-
-
-
-			 </ul>
-			<script type="text/javascript">
-				 $(window).load(function() {
-					$("#flexiselDemo3").flexisel({
-						visibleItems: 6,
-						animationSpeed: 1000,
-						autoPlay:true,
-						autoPlaySpeed: 3000,
-						pauseOnHover: true,
-						enableResponsiveBreakpoints: true,
-						responsiveBreakpoints: {
-							portrait: {
-								changePoint:480,
-								visibleItems: 1
-							},
-							landscape: {
-								changePoint:640,
-								visibleItems: 2
-							},
-							tablet: {
-								changePoint:768,
-								visibleItems: 3
-							}
-						}
-					});
-
-				});
-			</script>
-			<script type="text/javascript" src="<?=Url::to('@web/js/jquery.flexisel.js', true)?>"></script>
-		</div>
-	</div>
+	<img src="images/picture10.jpg" style="margin-top:10px;width:100%">
 
 	<div class="footer">
 		<div class="container">
@@ -233,4 +159,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
-</html>		
+</html>

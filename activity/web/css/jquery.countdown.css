@@ -20,19 +20,19 @@
 	display:block;
 	border-radius:0.2em;
 	text-align:center;
-	color:#8cb273;
+	color:#ff0000;
 	letter-spacing:-1px;
 }
 /*--
 .digit.static{
 	box-shadow:1px 1px 1px rgba(4, 4, 4, 0.35);
-	
+
 	background-image: linear-gradient(bottom, #3A3A3A 50%, #444444 50%);
 	background-image: -o-linear-gradient(bottom, #3A3A3A 50%, #444444 50%);
 	background-image: -moz-linear-gradient(bottom, #3A3A3A 50%, #444444 50%);
 	background-image: -webkit-linear-gradient(bottom, #3A3A3A 50%, #444444 50%);
 	background-image: -ms-linear-gradient(bottom, #3A3A3A 50%, #444444 50%);
-	
+
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
