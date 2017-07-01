@@ -71,6 +71,11 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            $user = $this->getUser();
+            // 是否店面过期
+            if (strtotime($user->deadline) < time()) {
+                return false;
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 60 * 30 : 0);
         } else {
             return false;
