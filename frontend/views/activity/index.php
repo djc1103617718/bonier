@@ -37,18 +37,41 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'start_time',
             'end_time',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return \common\helper\views\ColumnDisplay::displayStatus($model->status, [
+                        1 => ['正常', 'info'],
+                        2 => ['已发布', 'success'],
+                        0 => ['删除', 'default'],
+                    ]);
+                }
+            ],
             //'user_id',
             // 'created_at',
             // 'updated_at',
 
             [
                 'class' => 'common\components\grid\ActionColumn',
-                'template' => '{view}{update}{delete}{preview}',
+                'template' => '{view}{update}{preview}{public}{delete}',
                 'buttons' => [
                     'preview' => function ($url, $model, $key) {
                         $url = \yii\helpers\Url::to(['activity/preview', 'id' => $model->id]);
                         return Html::a('<span class="fa fa-eye">预览</span>', $url, ['title' => '预览活动页面']);
                     },
+                    'public' => function ($url, $model, $key) {
+                        return \common\helper\views\ColumnDisplay::operatingDelete(
+                            [
+                                'url' => ['activity', 'id' => $model->id],
+                                'method' => 'post',
+                                'title' => '确认发布活动',
+                                'content' => '一旦发布,用户将可以下单,该活动亦将不可更改,您确认发布该活动吗?',
+                            ],
+                            '发布',
+                            'fa fa-share-square-o'
+                        );
+                    }
                 ],
             ],
         ],

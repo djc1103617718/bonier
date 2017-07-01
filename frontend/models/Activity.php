@@ -36,6 +36,15 @@ class Activity extends \common\models\Activity
 
     public function create()
     {
+        $now = date('Y-m-d', time());
+        $activity = Activity::find()
+            ->where(['user_id' => Yii::$app->user->id, 'status' => self::STATUS_PUBLIC])
+            ->andWhere(['>=', 'end_time', $now])
+            ->one();
+        if (!empty($activity)) {
+            return false;
+        }
+
         if (!$this->validate()) {
             return false;
         }
@@ -64,6 +73,11 @@ class Activity extends \common\models\Activity
         if (!$this->validate()) {
             return false;
         }
+
+        if ($this->status === self::STATUS_PUBLIC) {
+            return false;
+        }
+
         $this->products = array_unique($this->products);
         $transaction = Yii::$app->db->beginTransaction();
 
@@ -75,7 +89,6 @@ class Activity extends \common\models\Activity
             if (!$oldProducts) {
                 throw new Exception('更新失败! ');
             }
-
 
             $product = Product::updateAll(['act_id' => $this->id], ['id' => $this->products]);
             if (!$product) {
@@ -92,6 +105,10 @@ class Activity extends \common\models\Activity
 
     public function deleteActivity()
     {
+        if ($this->status === self::STATUS_PUBLIC) {
+            return false;
+        }
+
         $transaction = Yii::$app->db->beginTransaction();
 
         try {

@@ -34,6 +34,12 @@ class JoinController extends BaseController
         $open_id = Yii::$app->session->get('open_id');
         $wechat = Wechat::findOne(['open_id' => $open_id]);
 
+        // 检查活动是否已经发布以及是否已经结束
+        $activity = Activity::findOne($id);
+        if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
         $order = new Order();
         $order->open_id = $open_id;
         $order->bargained_num = 0;
@@ -104,6 +110,13 @@ class JoinController extends BaseController
             $order = Order::findOne(['order_number' => $id]);
             if (empty($order)) {
                 throw new NotFoundHttpException('找不到对应的页面');
+            }
+            // 检查是否活动已经结束
+            $activity = Activity::find()
+                ->where(['id' => $order->act_id])
+                ->one();
+            if (empty($activity) || (strtotime($activity->end_time) < time())) {
+                return $this->redirect(Yii::$app->request->referrer);
             }
 
             // 检查是否已经为他减少过价格

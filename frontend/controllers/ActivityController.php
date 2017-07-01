@@ -96,9 +96,36 @@ class ActivityController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->deleteActivity();
+        if ($this->findModel($id)->deleteActivity()) {
+            return $this->redirect(['index']);
+        } else {
+            Yii::$app->session->setFlash('error', '删除失败!');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+    }
 
-        return $this->redirect(['index']);
+    /**
+     * 发布活动
+     *
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionPublic($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = Activity::STATUS_PUBLIC;
+
+        $now = date('Y-m-d', time());
+        $activity = Activity::find()
+            ->where(['user_id' => Yii::$app->user->id, 'status' => Activity::STATUS_PUBLIC])
+            ->andWhere(['>=', 'end_time', $now])
+            ->one();
+
+        if (!empty($activity) || ($model->update(false) === false)) {
+            Yii::$app->session->setFlash('error', '发布活动失败!');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        return $this->redirect(Yii::$app->urlManagerActivity->createUrl(['site/index', 'id' => $id]));
     }
 
     /**

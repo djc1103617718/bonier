@@ -60,6 +60,17 @@
                         ],
 
                     ],
+                    [
+                        'label' => '账户信息',
+                        'icon' => 'user',
+                        'url' => '#',
+                        'options' => ['style' => 'font-size:18px'],
+                        'items' => [
+                            ['label' => '账户详情', 'url' => ['user/view'],],
+                            ['label' => '更新账户', 'url' => ['user/reset-request', 'type' => 1],],
+                            ['label' => '修改密码', 'url' => ['user/reset-request'],],
+                        ],
+                    ],
                     /*[
                         'label' => '管理员管理',
                         'icon' => 'users',

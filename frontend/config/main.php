@@ -12,9 +12,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
-        'user' => [
-            'class' => 'frontend\user\Module',
-        ],
     ],
     'components' => [
         'request' => [

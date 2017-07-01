@@ -17,6 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $btn = \common\helper\views\ButtonGroup::begin();
     $btn->buttonDefault('更新', 'btn btn-primary', 'update')->link(['activity/update', 'id' => $model->id]);
+    $btn->button('发布', 'btn btn-info', null, 'fa fa-share-square-o')->confirm([
+        'url' => ['activity/public', 'id' => $model->id],
+        'method' => 'post',
+        'title' => '发布活动',
+        'content' => '一旦发布该活动不可修改和删除,你确定要发布活动吗?'
+    ]);
     $btn->buttonDefault('删除', 'btn btn-danger', 'delete')->confirm([
         'url' => ['activity/delete', 'id' => $model->id],
         'method' => 'post',
@@ -34,6 +40,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'start_time',
             'end_time',
             //'user_id',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => \yii\helpers\ArrayHelper::getValue($model, function ($model) {
+                    return \common\helper\views\ColumnDisplay::displayStatus($model->status, [
+                        1 => ['正常', 'info'],
+                        2 => ['已发布', 'success'],
+                        0 => ['删除', 'default'],
+                    ]);
+                })
+            ],
             'created_at',
             'updated_at',
         ],

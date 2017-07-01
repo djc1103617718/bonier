@@ -16,12 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $btn = \common\helper\views\ButtonGroup::begin();
     $btn->buttonDefault('更新', 'btn btn-primary', 'update')->link(['address/update', 'id' => $model->id]);
-    $btn->buttonDefault('删除', 'btn btn-danger', 'delete')->confirm([
+    /*$btn->buttonDefault('删除', 'btn btn-danger', 'delete')->confirm([
         'url' => ['address/delete', 'id' => $model->id],
         'method' => 'post',
         'title' => '删除活动',
         'content' => '删除以后将不能恢复,你确定要删除商户吗?'
-    ]);
+    ]);*/
     $btn::end();
     ?>
 

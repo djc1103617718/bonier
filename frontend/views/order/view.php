@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use frontend\models\Order;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Order */
@@ -40,7 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->price/100;
                 })
             ],
-            'status',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => \yii\helpers\ArrayHelper::getValue($model, function ($model) {
+                    return \common\helper\views\ColumnDisplay::displayStatus($model->status, [
+                        Order::STATUS_DELETE => ['删除', 'label label-default'],
+                        Order::STATUS_TEMP => ['临时订单', 'label label-default'],
+                        Order::STATUS_VALID => ['正常', 'label label-success'],
+                        Order::STATUS_FINISH => ['已完成', 'label label-primary'],
+                    ], 1);
+                })
+            ],
             'created_at',
         ],
     ]) ?>

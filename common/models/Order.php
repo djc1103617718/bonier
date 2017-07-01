@@ -28,6 +28,9 @@ class Order extends \yii\db\ActiveRecord
     const STATUS_TEMP = 1;
     // 已经提交
     const STATUS_VALID = 2;
+    // 已经完成的订单
+    const STATUS_FINISH = 3;
+
 
     /**
      * @inheritdoc

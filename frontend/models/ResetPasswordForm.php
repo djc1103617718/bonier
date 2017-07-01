@@ -1,9 +1,10 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\base\InvalidParamException;
-use common\models\User;
+use frontend\models\User;
 
 /**
  * Password reset form
@@ -12,11 +13,12 @@ class ResetPasswordForm extends Model
 {
     public $password;
 
+    public $rePassword;
+
     /**
      * @var \common\models\User
      */
     private $_user;
-
 
     /**
      * Creates a form model given a token.
@@ -44,8 +46,26 @@ class ResetPasswordForm extends Model
     {
         return [
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 6, 'max' => 12],
+            [['rePassword', 'password'], 'equalPassword', 'skipOnError' => false, 'skipOnEmpty'=> false],
         ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'password' => Yii::t('app', '新密码'),
+            'rePassword' => Yii::t('app', '确认密码'),
+        ];
+    }
+
+    public function equalPassword($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            if ($this->password !== $this->rePassword) {
+                $this->addError($attribute, '两次输入的密码不一致');
+            }
+        }
     }
 
     /**

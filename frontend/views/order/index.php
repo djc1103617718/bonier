@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use frontend\models\Order;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\searches\OrderSearch */
@@ -38,12 +39,38 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->price/100;
                 }
             ],
-            // 'status',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return \common\helper\views\ColumnDisplay::displayStatus($model->status, [
+                        Order::STATUS_DELETE => ['删除', 'label label-default'],
+                        Order::STATUS_TEMP => ['临时订单', 'label label-default'],
+                        Order::STATUS_VALID => ['正常', 'label label-success'],
+                        Order::STATUS_FINISH => ['已完成', 'label label-primary'],
+                    ], 1);
+                }
+            ],
             // 'created_at',
 
             [
                 'class' => 'common\components\grid\ActionColumn',
-                'template' => '{view}',
+                'template' => '{view}{finish}',
+                'buttons' => [
+                    'finish' => function ($url, $model, $key) {
+                        return \common\helper\views\ColumnDisplay::operatingDelete(
+                            [
+                                'url'=> ['order/finish', 'id' => $model->id],
+                                'method' => 'post',
+                                'title' => '确认订单已经完成',
+                                'content' => '您确认该订单已经完成吗?',
+                            ],
+                            '完成',
+                            'fa fa-check-square'
+                        );
+                        //return Html::a('<span class="fa fa-check-square-o">完成</span>', $url, ['title' => '确认订单完成']);
+                    },
+                ],
             ],
         ],
     ]); ?>

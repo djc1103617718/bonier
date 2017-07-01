@@ -21,6 +21,8 @@ use yii\db\ActiveRecord;
  */
 class Activity extends \yii\db\ActiveRecord
 {
+    // 正式发布活动
+    const STATUS_PUBLIC = 2;
     const STATUS_NORMAL = 1;
     const STATUS_DELETE = 0;
 

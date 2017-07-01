@@ -42,6 +42,23 @@ class OrderController extends BaseController
     }
 
     /**
+     * 确认订单完成
+     *
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionFinish($id)
+    {
+        if (!$this->findModel($id)->finish()) {
+            Yii::$app->session->setFlash('error', '提交失败!');
+        } else {
+            Yii::$app->session->setFlash('success', '订单已经完成');
+        }
+
+        return $this->redirect(['index']);
+    }
+
+    /**
      * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
