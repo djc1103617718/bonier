@@ -96,10 +96,7 @@ class SiteController extends Controller
         $model = new AppWechat();
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
-        $get = Yii::$app->request->get();
-        $ref = isset($get['ref']) ? $get['ref'] : Yii::$app->request->referrer;
-        $ref = str_replace('&', '__', $ref);
-        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope, $ref);
+        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
         return $this->redirect($request_url);
 
 
@@ -129,7 +126,7 @@ class SiteController extends Controller
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
                 //var_dump($data['state']);die;
-                return $this->redirect($data['state']);
+                return $this->redirect(Yii::$app->session->get('pre_page_url'));
             }
             // 新用户入库
             $wechat = new Wechat();
@@ -148,7 +145,7 @@ class SiteController extends Controller
                 throw new Exception();
             }
             Yii::$app->session->set('open_id', $wechat->open_id);
-            return $this->redirect($data['state']);
+            return $this->redirect(Yii::$app->session->get('pre_page_url'));
         } catch (Exception $e) {
             return $this->redirect(['login']);
         }

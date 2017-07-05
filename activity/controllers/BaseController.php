@@ -22,11 +22,11 @@ class BaseController extends Controller
         $session = Yii::$app->session;
         $get = Yii::$app->request->get();
         if (isset($get['ref'])) {
-            return $this->redirect(['site/login', 'ref' => $get['ref']]);
+            $session['pre_page_url'] = $get['ref'];
         } else {
-            return $this->redirect(['site/login']);
+            $session['pre_page_url'] = Yii::$app->request->referrer;
         }
-
+        return $this->redirect(['site/login']);
 
         if (!$session->get('open_id')) {
             $get = Yii::$app->request->get();
