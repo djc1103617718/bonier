@@ -96,6 +96,7 @@ class SiteController extends Controller
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
 
         $response = file_get_contents($request_url);
+        var_dump($response);
 
 
 
@@ -104,7 +105,9 @@ class SiteController extends Controller
     public function actionLoginProcess()
     {
         $data = Yii::$app->request->get();
+        $post = Yii::$app->request->post();
         var_dump($data);
+        var_dump($post);
     }
 
     /**
