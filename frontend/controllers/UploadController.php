@@ -94,6 +94,12 @@ class UploadController extends  BaseController
         $web_rout = Yii::getAlias('@frontend') . '/web';
         $user_id = Yii::$app->user->id;
         $files = $_FILES['upload'];
+
+        if (!isset($files['name'])) {
+            Yii::$app->session->setFlash('error', '没有上传文件');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
         $fileNum = count($files['name']);
         for ($i = 0; $i < $fileNum; $i++) {
             if ($files['size'][$i] > 2048000) {

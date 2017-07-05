@@ -55,7 +55,7 @@ class Activity extends \common\models\Activity
         try {
             $this->user_id = Yii::$app->user->id;
             $this->carousels = implode(',', $this->carousels);
-            var_dump($this->toArray());die;
+            //var_dump($this->toArray());die;
             if (!$this->save()) {
                 throw new Exception('创建失败!');
             }

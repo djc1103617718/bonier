@@ -249,6 +249,7 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        echo $_SERVER['HTTP_HOST'];
+        $url = urlencode('http://www.bonier.site');
+        var_dump($url);
     }
 }
