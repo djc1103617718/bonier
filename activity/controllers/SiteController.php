@@ -98,7 +98,7 @@ class SiteController extends Controller
         $scope = 'snsapi_login';
         $get = Yii::$app->request->get();
         $ref = isset($get['ref']) ? $get['ref'] : Yii::$app->request->referrer;
-        var_dump($ref);die;
+        $ref = str_replace('&', '__', $ref);
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope, $ref);
         return $this->redirect($request_url);
 
@@ -113,7 +113,7 @@ class SiteController extends Controller
         if (!isset($data['code'])) {
             return $this->redirect(['login']);
         }
-
+        $data['state'] = str_replace('__', '&', $data['state']);
         $code = $data['code'];
         $model = new AppWechat();
         $request_url = sprintf($model::ACCESS_TOKEN_API, $model->app_id, $model->app_secret, $code);
