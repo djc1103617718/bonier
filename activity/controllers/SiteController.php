@@ -115,7 +115,7 @@ class SiteController extends Controller
         $request_url = sprintf($model::ACCESS_TOKEN_API, $model->app_id, $model->app_secret, $code);
         try {
             // 获取access_token
-            $response = file_get_contents($request_url);
+            $response = json_decode(file_get_contents($request_url));
             var_dump($response);die;
             // 获取用户信息
             $request_user_info_url = sprintf($model::USER_INFO_API, $response['access_token'], $response['openid']);
