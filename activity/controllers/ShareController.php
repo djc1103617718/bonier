@@ -47,11 +47,12 @@ class ShareController extends Controller
     {
         $this->layout = false;
         $activity = Activity::findOne($id);
-        $address = Address::findOne(['user_id' => $activity['user_id']])->toArray();
+        $address = Address::findOne(['user_id' => $activity['user_id']]);
         if (empty($address)) {
             echo '该商户没有设置店铺地址,请联系商户';
             exit;
         }
+        $address = $address->toArray();
         if ($address['media_id']) {
             $address['media_img'] = Media::findOne($address['media_id'])->url;
         }
