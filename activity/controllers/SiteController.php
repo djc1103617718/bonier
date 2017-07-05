@@ -116,11 +116,11 @@ class SiteController extends Controller
         try {
             // 获取access_token
             $response = json_decode(file_get_contents($request_url));
-            var_dump($response);die;
+            //var_dump($response);die;
             // 获取用户信息
             $request_user_info_url = sprintf($model::USER_INFO_API, $response['access_token'], $response['openid']);
             $user_info = file_get_contents($request_user_info_url);
-            var_dump($user_info);die;
+            var_dump(json_decode($user_info));die;
 
             $originWechat = Wechat::findOne(['open_id' => $response['openid']]);
             if (!empty($originWechat)) {
