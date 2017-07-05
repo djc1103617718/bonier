@@ -96,7 +96,7 @@ class JoinController extends BaseController
     }
 
     /**
-     * 确认参加活动(立即提交)
+     * 确认参加活动(立即提交),生成分享页面
      *
      * @param string $id order_number
      * @return string|\yii\web\Response
@@ -227,6 +227,19 @@ class JoinController extends BaseController
             'topCarousels' => $topCarousels
 
         ]);
+    }
+
+    /***
+     *  价格变动明细
+     *
+     * @param string $id order_number
+     */
+    public function actionBargainDetail($id)
+    {
+        $order = Order::findOne(['order_number' => $id]);
+        if (empty($order)) {
+            throw new NotFoundHttpException('找不到对应的页面');
+        }
     }
 
     private function randBargain($remained_num, $remained_price)

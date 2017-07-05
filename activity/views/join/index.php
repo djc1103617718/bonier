@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 <div class="desc">
 						<ul class="list2">
 						  <li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number])?>" class="link">参与活动</a></span></li>
-						  <li class="list2_left"><span class="m_2"><a href="bargain_list.html" class="link1">我的价格变动明细</a></span></li>
+						  <li class="list2_left"><span class="m_2"><a href="<?=Url::to(['join/bargain-detail', 'id' => $order->order_number])?>" class="link1">我的价格变动明细</a></span></li>
 						  <div class="clearfix"> </div>
 						</ul>
 					 </div>
@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 
-    <img src="images/picture10.jpg" style="margin-top:10px;width:100%">
+    <img src="<?=Url::to('@web/images/picture10.jpg')?>" style="margin-top:10px;width:100%">
 
 	<div class="footer">
 		<div class="container">
