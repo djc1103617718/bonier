@@ -127,6 +127,7 @@ class SiteController extends Controller
             $originWechat = Wechat::findOne(['open_id' => $response['openid']]);
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
+                var_dump($data['state']);die;
                 return $this->redirect($data['state']);
             }
             // 新用户入库
