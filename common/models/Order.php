@@ -19,6 +19,8 @@ use yii\db\ActiveRecord;
  * @property integer $status
  * @property string $created_at
  * @property string $updated_at
+ * @property string $customer_name
+ * @property integer $phone
  */
 class Order extends \yii\db\ActiveRecord
 {

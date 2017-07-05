@@ -2,6 +2,7 @@
 namespace activity\controllers;
 
 use Yii;
+use activity\models\OrderBefore;
 use activity\models\Product;
 use common\models\BargainPartner;
 use common\models\Category;
@@ -14,23 +15,62 @@ use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 
 /**
+ * 参与活动前填写客户信息
+ *
  * Site controller
  */
 class JoinController extends BaseController
 {
+    public function actionOrderBefore($id, $product_id)
+    {
+        $this->layout = false;
+        $model = new OrderBefore();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $mold = Activity::joinActivityData($id, $product_id);
+            $open_id = Yii::$app->session->get('open_id');
+
+            // 检查活动是否已经发布以及是否已经结束
+            $activity = Activity::findOne($id);
+            if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+            $order = new Order();
+            $order->open_id = $open_id;
+            $order->customer_name = $model->name;
+            $order->phone = $model->phone;
+            $order->bargained_num = 0;
+            $order->product_id = $product_id;
+            $order->order_number = IdBuilder::getUniqueId();
+            $order->price = $mold['product']['start_price'];
+            $order->act_id = $id;
+            if (!$order->save()) {
+                throw new Exception('error');
+            }
+            return $this->redirect(['index', 'id' => $order->order_number]);
+        }
+        return $this->render('order-before',[
+            'model' => $model
+        ]);
+    }
+
     /**
      * 参加活动
      * Displays homepage.
      *
-     * @param int $id act_id
-     * @param int $product_id
+     * @param @sting $id order_id
      * @return mixed
      * @throws Exception
      */
-    public function actionIndex($id, $product_id)
+    public function actionIndex($id)
     {
         $this->layout = false;
-        $mold = Activity::joinActivityData($id, $product_id);
+        $order = Order::findOne($id);
+        if (empty($order)) {
+            throw new NotFoundHttpException();
+        }
+
+        $mold = Activity::joinActivityData($order['act_id'], $order['product_id']);
         $open_id = Yii::$app->session->get('open_id');
         $wechat = Wechat::findOne(['open_id' => $open_id]);
 
@@ -38,17 +78,6 @@ class JoinController extends BaseController
         $activity = Activity::findOne($id);
         if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
             return $this->redirect(Yii::$app->request->referrer);
-        }
-
-        $order = new Order();
-        $order->open_id = $open_id;
-        $order->bargained_num = 0;
-        $order->product_id = $product_id;
-        $order->order_number = IdBuilder::getUniqueId();
-        $order->price = $mold['product']['start_price'];
-        $order->act_id = $id;
-        if (!$order->save()) {
-            throw new Exception('error');
         }
 
         $userProductImgList = Activity::userProductImgList($mold['user_id']);

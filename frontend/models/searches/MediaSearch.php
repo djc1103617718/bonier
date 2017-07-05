@@ -46,11 +46,12 @@ class MediaSearch extends Media
      *
      * @param array $params
      *
+     * @param int $type
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $type = Media::TYPE_IMG)
     {
-        $query = Media::find()->where(['user_id' => Yii::$app->user->id, 'type' => Media::TYPE_IMG]);
+        $query = Media::find()->where(['user_id' => Yii::$app->user->id, 'type' =>$type]);
 
         // add conditions that should always apply here
 

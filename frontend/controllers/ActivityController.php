@@ -62,6 +62,8 @@ class ActivityController extends BaseController
             return $this->render('create', [
                 'productList' => $model->productList(),
                 'model' => $model,
+                'carousels' => $model->carouselsList(),
+                'backend_musics' => $model->backendMusicList(),
             ]);
         }
     }
@@ -84,6 +86,8 @@ class ActivityController extends BaseController
             return $this->render('update', [
                 'productList' => $productList,
                 'model' => $model,
+                'carousels' => $model->carouselsList(),
+                'backend_musics' => $model->backendMusicList(),
             ]);
         }
     }

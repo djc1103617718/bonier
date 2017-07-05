@@ -1,13 +1,14 @@
-﻿<?php
+<?php
+
 use yii\helpers\Url;
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>砍价商品</title>
+<title>信息提交</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+<meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="<?=Url::to('@web/css/bootstrap.css', true)?>" rel='stylesheet' type='text/css' />
@@ -28,17 +29,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </style>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="<?=Url::to('@web/css/style.css', true)?>" rel='stylesheet' type='text/css' />
+<link href="<?=Url::to('@web/css/style.css', true)?>"  rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="<?=Url::to('@web/css/jquery.countdown.css', true)?>" />
 <!-- Custom Theme files -->
 <!--webfont-->
 <!--<link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
---><script type="text/javascript" src="<?=Url::to('@web/js/jquery-1.11.1.min.js', true)?>"></script>
+--><script type="text/javascript" src="<?=Url::to('@web/js/jquery-1.11.1.min.js', true)?>" ></script>
 <!-- dropdown -->
-<script src="<?=Url::to('@web/js/jquery.easydropdown.js', true)?>"></script>
+<script src="<?=Url::to('@web/js/jquery.easydropdown.js', true)?>" ></script>
 <!-- start menu -->
 <link href="<?=Url::to('@web/css/megamenu.css', true)?>" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="<?=Url::to('@web/js/megamenu.js', true)?>"></script>
+<script type="text/javascript"  src="<?=Url::to('@web/js/megamenu.js', true)?>"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="<?=Url::to('@web/js/responsiveslides.min.js', true)?>"></script>
 <script>
@@ -76,39 +77,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="40" bgcolor="#2b9c4a" vspace="10"><font color="#ffffff">
-			<?= $mold['announcement']?>
+				<?= $mold['announcement']?>
 		</marquee>
 	</div>
 
 	<div class="content_top" style="margin-top:-30px">
-		<div class="container">
+		<div class="container" style="padding-left:5px;padding-right:5px;padding-bottom:5%">
 			<div class="grid_2">
 				<div class="col-md-3 span_6">
-				  <div class="box_inner">
-					  <?php
-					  $url = isset($userProductImgList[$mold['product']['media_id']]) ? $userProductImgList[$mold['product']['media_id']]:null;
-					  ?>
-					<img src="<?=$baseUrl.$url?>" class="img-responsive" alt=""/>
-					 <div class="sale-box"> </div>
-				  	 <img class="image" src="<?=$wechat['avatar']?>" style="margin-top:10px" />
-				  	 <p><font size="1" face="Verdana"><?=$wechat['nickname']?></font></p>
-					  <p>已减价<?=$order->bargained_num?>次，还需减价<?=$mold['product']['bargain_num']-$order->bargained_num?>次</p>
-					  <p>当前<a style="background:#CE0000"><?=$order->price/100?></a>元，可降至<?=$mold['product']['reserve_price']/100?>元</p>
-					 <div class="desc">
-						<ul class="list2">
-						  <li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number])?>" class="link">参与活动</a></span></li>
-						  <li class="list2_left"><span class="m_2"><a href="bargain_list.html" class="link1">我的价格变动明细</a></span></li>
-						  <div class="clearfix"> </div>
-						</ul>
-					 </div>
-				   </div>
-				</div>
+					<form  style="padding-bottom:23.5%">
+						<input type="hidden" name="_csrf-activity" value="<?=Yii::$app->request->getCsrfToken()?>"/>
+						<div style="margin-top:20%">
+							<span>姓名<label>*</label></span>
+							<input type="text" name="OrderBefore[name]">
+						</div>
+						<div>
+							<span>电话<label>*</label></span>
+							<input type="text" name="OrderBefore[phone]">
+						</div>
+						<input type="submit" value="提交" style="float:right">
+						<div></div>
+					</form>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
 	</div>
-
-    <img src="images/picture10.jpg" style="margin-top:10px;width:100%">
 
 	<div class="footer">
 		<div class="container">
@@ -124,4 +117,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
-</html>
+</html>		

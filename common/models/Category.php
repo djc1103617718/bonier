@@ -27,6 +27,8 @@ class Category extends Model
     const CATEGORY_ADDRESS_IMG = '店铺地址图片';
     // 顶部轮播图
     const CATEGORY_TOP_CAROUSEL = '顶部轮播图';
+    // 背景音乐
+    const CATEGORY_BACKEND_MUSIC = '背景音乐';
 
     /**
      * 媒体文件分类list
@@ -38,6 +40,7 @@ class Category extends Model
             1 => self::CATEGORY_PRODUCT_IMG,
             2 => self::CATEGORY_TOP_CAROUSEL,
             3 => self::CATEGORY_ADDRESS_IMG,
+            4 => self::CATEGORY_BACKEND_MUSIC,
         ];
     }
 

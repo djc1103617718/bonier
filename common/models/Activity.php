@@ -16,6 +16,8 @@ use yii\db\ActiveRecord;
  * @property integer $user_id
  * @property integer $status
  * @property string $announcement
+ * @property string $music
+ * @property string $carousels
  * @property string $created_at
  * @property string $updated_at
  */
@@ -56,8 +58,8 @@ class Activity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['start_time', 'end_time'], 'required'],
-            [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
+            [['start_time', 'end_time', 'carousels'], 'required'],
+            [['start_time', 'end_time', 'created_at', 'updated_at', 'music'], 'safe'],
             [['user_id', 'status'], 'integer'],
             [['name'], 'string', 'max' => 128],
             ['announcement', 'string', 'max' => 356],
@@ -77,6 +79,8 @@ class Activity extends \yii\db\ActiveRecord
             'user_id' => '创建活动的用户',
             'status' => '状态',
             'announcement' => '公告',
+            'carousels' => '顶部轮播图',
+            'music' => '背景音乐',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
         ];

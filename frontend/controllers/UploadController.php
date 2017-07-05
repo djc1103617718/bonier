@@ -13,21 +13,6 @@ use yii\web\UploadedFile;
 class UploadController extends  BaseController
 {
     /**
-     * Lists all FileUpdateUpload models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new FileUpdateUploadSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            //'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
      * Displays a single FileUpdateUpload model.
      * @param integer $id
      * @return mixed
@@ -86,6 +71,21 @@ class UploadController extends  BaseController
     }
 
     /**
+     * @return string
+     */
+    public function actionBackendMusic()
+    {
+        if (Yii::$app->request->isPost && !empty($_FILES)) {
+            $this->saveFiles('saveMusic');
+        }
+
+        return $this->render('create',[
+            'title' => '背景音乐上传',
+            'action' => 'upload/backend-music'
+        ]);
+    }
+
+    /**
      * @param $saveType
      * @return \yii\web\Response
      */
@@ -117,6 +117,9 @@ class UploadController extends  BaseController
                 Yii::$app->session->setFlash('error', '文件:' . $files['name'][$i] . '上传失败!');
                 return $this->redirect(Yii::$app->request->referrer);
             }
+        }
+        if ($saveType === 'saveMusic') {
+            return $this->redirect(['media/music-index']);
         }
         return $this->redirect(['media/index']);
     }

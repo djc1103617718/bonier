@@ -64,4 +64,23 @@ class Upload extends Model
         }
         return true;
     }
+
+    /**
+     * @param $name
+     * @param $url
+     * @return bool|Media
+     */
+    public function saveMusic($name, $url)
+    {
+        $model = new Media();
+        $model->user_id = Yii::$app->user->id;
+        $model->category = Category::CATEGORY_BACKEND_MUSIC;
+        $model->type = Media::TYPE_MUSIC;
+        $model->url = $url;
+        $model->name = $name;
+        if (!$model->save()) {
+            return false;
+        }
+        return true;
+    }
 }

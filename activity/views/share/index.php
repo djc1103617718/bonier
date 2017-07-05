@@ -60,8 +60,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider">
 			<ul class="rslides" id="slider">
-				<?php if ($mold && !empty($mold['top_carousels'])){
-					$baseUrl = Yii::$app->params['frontend_host'] . '/';
+				<?php
+				$baseUrl = Yii::$app->params['frontend_host'] . '/';
+				if ($mold && !empty($mold['top_carousels'])){
 					foreach ($mold['top_carousels'] as $url) {
 						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:400px' alt=''/></li>";
 					}
@@ -76,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="40" bgcolor="#2b9c4a" vspace="10"><font color="#ffffff">
-			央视网消息（新闻联播）：国家主席习近平19日在人民大会堂集体会见来华出席金砖国家外长会晤的俄罗斯外长拉夫罗夫、南非外长马沙巴内、巴西外长努内斯、印度外交国务部长辛格。
+			<?= $mold['announcement']?>
 		</marquee>
 	</div>
 

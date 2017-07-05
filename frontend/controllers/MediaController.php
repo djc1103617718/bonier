@@ -24,7 +24,16 @@ class MediaController extends BaseController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionMusicIndex()
+    {
+        $searchModel = new MediaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, Media::TYPE_MUSIC);
+
+        return $this->render('music-index', [
             'dataProvider' => $dataProvider,
         ]);
     }
