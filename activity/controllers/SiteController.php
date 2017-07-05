@@ -107,6 +107,7 @@ class SiteController extends Controller
     public function actionLoginProcess()
     {
         $data = Yii::$app->request->get();
+        var_dump($data);die;
         if (!isset($data['code'])) {
             return $this->redirect(['login']);
         }
@@ -141,7 +142,6 @@ class SiteController extends Controller
             $wechat->province = $user_info['province'];
             $wechat->created_at = date('Y-m-d H:i:s', time());
             if (!$wechat->save()) {
-                var_dump($wechat->errors);die;
                 throw new Exception();
             }
             Yii::$app->session->set('open_id', $wechat->open_id);
