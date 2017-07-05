@@ -2,6 +2,8 @@
 namespace activity\controllers;
 
 use activity\models\Activity;
+use activity\models\AppWechat;
+use common\components\HttpQuery;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -82,6 +84,27 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * 客户通过微信登陆平台
+     *
+     */
+    public function actionLogin()
+    {
+        $model = new AppWechat();
+        $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
+        $scope = 'snsapi_login';
+        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
+        $response = HttpQuery::getQuickCurlQuery($request_url);
+        var_dump($response);
+
+
+
+    }
+
+    public function actionLoginProcess()
+    {
+
+    }
 
     /**
      * Displays about page.

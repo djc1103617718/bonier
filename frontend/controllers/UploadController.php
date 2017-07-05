@@ -95,11 +95,6 @@ class UploadController extends  BaseController
         $user_id = Yii::$app->user->id;
         $files = $_FILES['upload'];
 
-        if (!isset($files['name'])) {
-            Yii::$app->session->setFlash('error', '没有上传文件');
-            return $this->redirect(Yii::$app->request->referrer);
-        }
-
         $fileNum = count($files['name']);
         for ($i = 0; $i < $fileNum; $i++) {
             if ($files['size'][$i] > 2048000) {
@@ -109,6 +104,10 @@ class UploadController extends  BaseController
 
             $tmpFile = $files['tmp_name'][$i];
             $nameArr = explode('.', $files['name'][$i]);
+            if (!isset($nameArr[1])) {
+                Yii::$app->session->setFlash('error', '没有上传文件');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
             $extension = $nameArr[1];
             $rand = rand(0,9) . $user_id . rand(10, 99);
             $url = 'upload/' . date("YmdHis",time()) . $rand . '.' . $extension;
