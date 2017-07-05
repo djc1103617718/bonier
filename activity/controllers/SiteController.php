@@ -3,8 +3,10 @@ namespace activity\controllers;
 
 use activity\models\Activity;
 use activity\models\AppWechat;
+use activity\models\Wechat;
 use common\components\HttpQuery;
 use Yii;
+use yii\base\Exception;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -93,7 +95,7 @@ class SiteController extends Controller
         $model = new AppWechat();
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
-        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
+        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope, Yii::$app->request->referrer);
         return $this->redirect($request_url);
 
 
@@ -111,8 +113,34 @@ class SiteController extends Controller
         $code = $data['code'];
         $model = new AppWechat();
         $request_url = sprintf($model::ACCESS_TOKEN_API, $model->app_id, $model->app_secret, $code);
-        $response = file_get_contents($request_url);
-        var_dump($response);
+        try {
+            // 获取access_token
+            $response = file_get_contents($request_url);
+            // 获取用户信息
+            $request_user_info_url = sprintf($model::USER_INFO_API, $response['access_token'], $response['openid']);
+            $user_info = file_get_contents($request_user_info_url);
+            var_dump($user_info);die;
+
+            $originWechat = Wechat::findOne(['open_id' => $response['openid']]);
+            if (!empty($originWechat)) {
+                $wechat = $originWechat;
+            } else {
+                $wechat = new Wechat();
+            }
+            $wechat->open_id = $response['openid'];
+            $wechat->access_token = $response['access_token'];
+            $wechat->refresh_token = $response['refresh_token'];
+            $wechat->expires_in = $response['expires_in'];
+            $wechat->unionid = $response['unionid'];
+            $wechat->created_at = date('Y-m-d H:i:s', time());
+            if (!$model->save()) {
+                throw new Exception();
+            }
+            Yii::$app->session->set('open_id', $wechat->open_id);
+            return $this->redirect($data['state']);
+        } catch (Exception $e) {
+            return $this->redirect(['login']);
+        }
     }
 
     /**
