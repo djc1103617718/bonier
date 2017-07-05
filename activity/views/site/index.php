@@ -138,6 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			echo "<p style='padding-left:115px;color:#000;font-size:10px'>零售价：{$start_price}元</p>";
 			echo '<ul class="list2" style="margin-top:10px;padding-right:10px">';
 			$join_url = \yii\helpers\Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $product['id']]);
+			$join_url = \yii\helpers\Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $product['id'], 'ref' => $join_url]);
 			echo "<li class='list2_left'><a class='acount-btn' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em;background:#f71b1b'>底价{$reserve_price}元</a></li>";
 			echo "<li class='list2_right'><a class='acount-btn' href='{$join_url}' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em'>我要参与</a></li>";
 			echo '<div class="clearfix"> </div></ul></div></div>';
@@ -155,9 +156,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 	<div id="bottom">
+		<?php
+		$my_product_url = \yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']]);
+		?>
 		<a class="acount-btn" href="<?=$allProductUrl?>" style="float:left;margin-left:20px;border-radius:100px">全部商品</a>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['share/address', 'id' => $mold['id']]);?>" style="border-radius:100px">领取地址</a>
-		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
+		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id'], 'ref' => $my_product_url])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
 </html>

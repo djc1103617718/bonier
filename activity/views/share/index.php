@@ -100,6 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<?php
 							$join_url = \yii\helpers\Url::to(['site/index', 'id' => $order->act_id]);
 							$help_bargain_url = \yii\helpers\Url::to(['join/help-bargain', 'id' => $order->order_number]);
+							$help_bargain_url = \yii\helpers\Url::to(['join/help-bargain', 'id' => $order->order_number, $help_bargain_url]);
 							?>
 						    <li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['site/index', 'id' => $order->act_id])?>" class="link">我要参与活动</a></span></li>
 						    <li class="list2_left"><span class="m_2"><a href="<?=\yii\helpers\Url::to(['join/help-bargain', 'id' => $order->order_number])?>" class="link1">帮他砍价</a></span></li>
