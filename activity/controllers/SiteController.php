@@ -125,7 +125,7 @@ class SiteController extends Controller
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
                 //var_dump($data['state']);die;
-               // echo '11111';var_dump(Yii::$app->session->get('pre_page_url'));die;
+               echo '11111';var_dump(Yii::$app->request->referrer);die;
                 return $this->redirect(Yii::$app->request->referrer);
             }
             // 新用户入库
