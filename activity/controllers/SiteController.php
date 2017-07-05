@@ -96,7 +96,9 @@ class SiteController extends Controller
         $model = new AppWechat();
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
-        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope, Yii::$app->request->referrer);
+        $get = Yii::$app->request->get();
+        $ref = isset($get['ref']) ? $get['ref'] : Yii::$app->request->referrer;
+        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope, $ref);
         return $this->redirect($request_url);
 
 

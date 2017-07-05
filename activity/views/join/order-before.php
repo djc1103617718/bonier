@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container" style="padding-left:5px;padding-right:5px;padding-bottom:5%">
 			<div class="grid_2">
 				<div class="col-md-3 span_6">
-					<form  style="padding-bottom:23.5%" method="post" action="<?=Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $mold['product']['id'] ])?>">
+					<form  style="padding-bottom:23.5%" method="" action="<?=Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $mold['product']['id'] ])?>">
 						<input type="hidden" name="_csrf-activity" value="<?=Yii::$app->request->getCsrfToken()?>"/>
 						<div style="margin-top:20%">
 							<span>姓名<label>*</label></span>
@@ -110,11 +110,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p class="copy" style="margin-bottom:10px">技术支持：15773276075</p>
 		</div>
 	</div>
-	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 	<div id="bottom">
+		<?php
+		$my_product_url = \yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']]);
+		?>>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['site/index', 'id' => $mold['id']])?>" style="float:left;margin-left:20px;border-radius:100px">全部商品</a>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['share/address', 'id' => $mold['id']])?>" style="border-radius:100px">领取地址</a>
-		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
+		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id'], 'ref' => $my_product_url])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
 </html>		

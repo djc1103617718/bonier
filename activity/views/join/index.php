@@ -96,8 +96,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <p>当前<a style="background:#CE0000"><?=$order->price/100?></a>元，可降至<?=$mold['product']['reserve_price']/100?>元</p>
 					 <div class="desc">
 						<ul class="list2">
-						  <li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number])?>" class="link">参与活动</a></span></li>
-						  <li class="list2_left"><span class="m_2"><a href="<?=Url::to(['join/bargain-detail', 'id' => $order->order_number])?>" class="link1">我的价格变动明细</a></span></li>
+							<?php
+							$join_url = \yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number]);
+							$price_url = Url::to(['join/bargain-detail', 'id' => $order->order_number]);
+							?>
+							<li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number, 'ref' => $join_url])?>" class="link">参与活动</a></span></li>
+							<li class="list2_left"><span class="m_2"><a href="<?=Url::to(['join/bargain-detail', 'id' => $order->order_number, 'ref' => $price_url])?>" class="link1">我的价格变动明细</a></span></li>
 						  <div class="clearfix"> </div>
 						</ul>
 					 </div>
@@ -119,9 +123,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 	<div id="bottom">
+		<?php
+		$my_product_url = \yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']]);
+ 		?>>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['site/index', 'id' => $mold['id']])?>" style="float:left;margin-left:20px;border-radius:100px">全部商品</a>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['share/address', 'id' => $mold['id']])?>" style="border-radius:100px">领取地址</a>
-		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
+		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id'], 'ref' => $my_product_url])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
 </html>

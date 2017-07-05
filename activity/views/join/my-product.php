@@ -155,10 +155,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+	<?php
+	$myProduct_url = \yii\helpers\Url::to(['join/my-product', 'id' => $activity['id']]);
+	?>
 	<div id="bottom">
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['site/index', 'id' => $activity['id']])?>" style="float:left;margin-left:20px;border-radius:100px">全部商品</a>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['share/address', 'id' => $activity['id']])?>" style="border-radius:100px">领取地址</a>
-		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $activity['id']])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
+		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $activity['id'], 'ref' => $myProduct_url])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
 	</div>
 </body>
 </html>
