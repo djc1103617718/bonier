@@ -125,8 +125,8 @@ class SiteController extends Controller
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
                 //var_dump($data['state']);die;
-                echo '11111';var_dump(Yii::$app->session->get('pre_page_url'));die;
-                return $this->redirect(Yii::$app->session->get('pre_page_url'));
+               // echo '11111';var_dump(Yii::$app->session->get('pre_page_url'));die;
+                return $this->redirect('/bonier/activity/web/index.php?r=join%2Forder-before&id=17&product_id=45');
             }
             // 新用户入库
             $wechat = new Wechat();
@@ -145,8 +145,8 @@ class SiteController extends Controller
                 throw new Exception();
             }
             Yii::$app->session->set('open_id', $wechat->open_id);
-            var_dump(Yii::$app->session->get('pre_page_url'));die;
-            return $this->redirect(Yii::$app->session->get('pre_page_url'));
+            //var_dump(Yii::$app->session->get('pre_page_url'));die;
+            return $this->redirect('/bonier/activity/web/index.php?r=join%2Forder-before&id=17&product_id=45');
         } catch (Exception $e) {
             return $this->redirect(['login']);
         }
