@@ -96,7 +96,7 @@ class SiteController extends Controller
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
 
         $response = file_get_contents($request_url);
-        var_dump($response);
+        echo $response;
 
 
 
