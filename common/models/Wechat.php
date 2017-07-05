@@ -43,7 +43,7 @@ class Wechat extends \yii\db\ActiveRecord
             [['open_id', 'username', 'nickname', 'unionid', 'province', 'city', 'country'], 'string', 'max' => 128],
             [['avatar', 'access_token', 'refresh_token'], 'string', 'max' => 256],
             [['sex'], 'string', 'max' => 12],
-            [['expires_in'], 'string', 'max' => 24],
+            [['expires_in'], 'integer'],
             [['open_id'], 'unique'],
         ];
     }
