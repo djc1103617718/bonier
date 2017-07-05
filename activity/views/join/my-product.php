@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<marquee direction="up" behavior="scroll" scrollamount="1" scrolldelay="0" loop="-1" width=100% height="70" bgcolor="#2b9c4a" vspace="10"><font color="#ffffff">
-			<?= $mold['announcement']?>
+			<?= $activity['announcement']?>
 		</marquee>
 	</div>
 
