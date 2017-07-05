@@ -104,9 +104,15 @@ class SiteController extends Controller
     public function actionLoginProcess()
     {
         $data = Yii::$app->request->get();
-        $post = Yii::$app->request->post();
-        var_dump($data);
-        var_dump($post);
+        if (!isset($data['code'])) {
+            return $this->redirect(['login']);
+        }
+
+        $code = $data['code'];
+        $model = new AppWechat();
+        $request_url = sprintf($model::ACCESS_TOKEN_API, $model->app_id, $model->app_secret, $code);
+        $response = file_get_contents($request_url);
+        var_dump($response);
     }
 
     /**
