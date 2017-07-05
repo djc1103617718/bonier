@@ -94,7 +94,8 @@ class SiteController extends Controller
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
-        $response = HttpQuery::getQuickCurlQuery($request_url);
+
+        $response = file_get_contents($request_url);
 
 
 
