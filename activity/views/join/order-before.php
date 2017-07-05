@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container" style="padding-left:5px;padding-right:5px;padding-bottom:5%">
 			<div class="grid_2">
 				<div class="col-md-3 span_6">
-					<form  style="padding-bottom:23.5%" method="" action="<?=Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $mold['product']['id'] ])?>">
+					<form  style="padding-bottom:23.5%" method="post" action="<?=Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $mold['product']['id'] ])?>">
 						<input type="hidden" name="_csrf-activity" value="<?=Yii::$app->request->getCsrfToken()?>"/>
 						<div style="margin-top:20%">
 							<span>姓名<label>*</label></span>
