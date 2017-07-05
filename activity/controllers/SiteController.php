@@ -106,8 +106,8 @@ class SiteController extends Controller
     {
         $data = Yii::$app->request->get();
         $post = Yii::$app->request->post();
-        var_dump($data);
-        var_dump($post);
+        //var_dump($data);
+        //var_dump($post);
     }
 
     /**
