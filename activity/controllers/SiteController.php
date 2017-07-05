@@ -124,8 +124,6 @@ class SiteController extends Controller
             $originWechat = Wechat::findOne(['open_id' => $response['openid']]);
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
-                //var_dump($data['state']);die;
-               //echo '11111';var_dump(Yii::$app->request->referrer);die;
                 return $this->redirect(Yii::$app->session->get('pre_page_url'));
             }
             // 新用户入库
@@ -145,7 +143,7 @@ class SiteController extends Controller
                 throw new Exception();
             }
             Yii::$app->session->set('open_id', $wechat->open_id);
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect(Yii::$app->session->get('pre_page_url'));
         } catch (Exception $e) {
             return $this->redirect(['login']);
         }
