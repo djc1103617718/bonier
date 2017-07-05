@@ -98,6 +98,7 @@ class SiteController extends Controller
         $scope = 'snsapi_login';
         $get = Yii::$app->request->get();
         $ref = isset($get['ref']) ? $get['ref'] : Yii::$app->request->referrer;
+        var_dump($ref);die;
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope, $ref);
         return $this->redirect($request_url);
 
@@ -127,7 +128,7 @@ class SiteController extends Controller
             $originWechat = Wechat::findOne(['open_id' => $response['openid']]);
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
-                var_dump($data['state']);die;
+                //var_dump($data['state']);die;
                 return $this->redirect($data['state']);
             }
             // 新用户入库
