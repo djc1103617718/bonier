@@ -107,7 +107,6 @@ class SiteController extends Controller
     public function actionLoginProcess()
     {
         $data = Yii::$app->request->get();
-        var_dump($data);die;
         if (!isset($data['code'])) {
             return $this->redirect(['login']);
         }
