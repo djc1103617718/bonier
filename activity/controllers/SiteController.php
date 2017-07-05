@@ -125,7 +125,7 @@ class SiteController extends Controller
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
                 //var_dump($data['state']);die;
-                //var_dump(Yii::$app->session->get('pre_page_url'));die;
+                echo '11111';var_dump(Yii::$app->session->get('pre_page_url'));die;
                 return $this->redirect(Yii::$app->session->get('pre_page_url'));
             }
             // 新用户入库
@@ -145,7 +145,7 @@ class SiteController extends Controller
                 throw new Exception();
             }
             Yii::$app->session->set('open_id', $wechat->open_id);
-            //var_dump(Yii::$app->session->get('pre_page_url'));die;
+            var_dump(Yii::$app->session->get('pre_page_url'));die;
             return $this->redirect(Yii::$app->session->get('pre_page_url'));
         } catch (Exception $e) {
             return $this->redirect(['login']);
