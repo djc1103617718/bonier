@@ -95,7 +95,6 @@ class SiteController extends Controller
         $scope = 'snsapi_login';
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
         $response = HttpQuery::getQuickCurlQuery($request_url);
-        var_dump($response);
 
 
 
@@ -103,7 +102,8 @@ class SiteController extends Controller
 
     public function actionLoginProcess()
     {
-
+        $data = Yii::$app->request->get();
+        var_dump($data);
     }
 
     /**
