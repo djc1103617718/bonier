@@ -118,29 +118,27 @@ class SiteController extends Controller
             // 获取access_token
             $response = json_decode(file_get_contents($request_url));
             $response = ArrayHelper::toArray($response);
-
-            var_dump($response);die;
             // 获取用户信息
-            $request_user_info_url = sprintf($model::USER_INFO_API, $response->access_token, $response->openid);
-            $user_info = file_get_contents($request_user_info_url);
+            $request_user_info_url = sprintf($model::USER_INFO_API, $response['access_token'], $response['openid']);
+            $user_info = ArrayHelper::toArray(json_decode(file_get_contents($request_user_info_url)));
             // 已经备案用户只需登陆不需入库操作
-            $originWechat = Wechat::findOne(['open_id' => $response->openid]);
+            $originWechat = Wechat::findOne(['open_id' => $response['openid']]);
             if (!empty($originWechat)) {
-                Yii::$app->session->set('open_id', $response->openid);
+                Yii::$app->session->set('open_id', $response['openid']);
                 return $this->redirect($data['state']);
             }
             // 新用户入库
             $wechat = new Wechat();
-            $wechat->open_id = $response->openid;
-            $wechat->access_token = $response->access_token;
-            $wechat->refresh_token = $response->refresh_token;
-            $wechat->expires_in = $response->expires_in;
-            $wechat->unionid = $response->unionid;
-            $wechat->avatar = $user_info->headimgurl;
-            $wechat->nickname = $user_info->nickname;
-            $wechat->country = $user_info->country;
-            $wechat->city = $user_info->city;
-            $wechat->province = $user_info->province;
+            $wechat->open_id = $response['openid'];
+            $wechat->access_token = $response['access_token'];
+            $wechat->refresh_token = $response['refresh_token'];
+            $wechat->expires_in = $response['expires_in'];
+            $wechat->unionid = $response['unionid'];
+            $wechat->avatar = $user_info['headimgurl'];
+            $wechat->nickname = $user_info['nickname'];
+            $wechat->country = $user_info['country'];
+            $wechat->city = $user_info['city'];
+            $wechat->province = $user_info['province'];
             $wechat->created_at = date('Y-m-d H:i:s', time());
             if (!$wechat->save()) {
                 throw new Exception();
