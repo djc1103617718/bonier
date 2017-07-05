@@ -7,6 +7,7 @@ use activity\models\Wechat;
 use common\components\HttpQuery;
 use Yii;
 use yii\base\Exception;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -116,7 +117,9 @@ class SiteController extends Controller
         try {
             // 获取access_token
             $response = json_decode(file_get_contents($request_url));
-            //var_dump($response);die;
+            $response = ArrayHelper::toArray($response);
+
+            var_dump($response);die;
             // 获取用户信息
             $request_user_info_url = sprintf($model::USER_INFO_API, $response->access_token, $response->openid);
             $user_info = file_get_contents($request_user_info_url);
