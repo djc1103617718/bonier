@@ -94,9 +94,8 @@ class SiteController extends Controller
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
         $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
+        return $this->redirect($request_url);
 
-        $response = file_get_contents($request_url);
-        echo $response;
 
 
 
@@ -106,8 +105,8 @@ class SiteController extends Controller
     {
         $data = Yii::$app->request->get();
         $post = Yii::$app->request->post();
-        //var_dump($data);
-        //var_dump($post);
+        var_dump($data);
+        var_dump($post);
     }
 
     /**
