@@ -110,7 +110,6 @@ class SiteController extends Controller
         if (!isset($data['code'])) {
             return $this->redirect(['login']);
         }
-        $data['state'] = str_replace('__', '&', $data['state']);
         $code = $data['code'];
         $model = new AppWechat();
         $request_url = sprintf($model::ACCESS_TOKEN_API, $model->app_id, $model->app_secret, $code);
@@ -126,6 +125,7 @@ class SiteController extends Controller
             if (!empty($originWechat)) {
                 Yii::$app->session->set('open_id', $response['openid']);
                 //var_dump($data['state']);die;
+                var_dump(Yii::$app->session->get('pre_page_url'));die;
                 return $this->redirect(Yii::$app->session->get('pre_page_url'));
             }
             // 新用户入库
@@ -145,6 +145,7 @@ class SiteController extends Controller
                 throw new Exception();
             }
             Yii::$app->session->set('open_id', $wechat->open_id);
+            var_dump(Yii::$app->session->get('pre_page_url'));die;
             return $this->redirect(Yii::$app->session->get('pre_page_url'));
         } catch (Exception $e) {
             return $this->redirect(['login']);
