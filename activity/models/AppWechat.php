@@ -11,7 +11,7 @@ class AppWechat extends Model
     const LOGIN_API = 'https://open.weixin.qq.com/connect/qrconnect?appid=%s&redirect_uri=%s&response_type=code&scope=%s&state=STATE#wechat_redirect';
 
     public $app_id = 'wxd1e5e5eb0b1ef6b4';
-    public $app_secret = 'cfa6e3a96a6c2e95a78c4f3cea3c2ob3';
+    public $app_secret = '93afbc2ec5642232713f8b7bcf5b8b12';
     public $host = 'www.bonier.site';
 
 }
