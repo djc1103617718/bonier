@@ -43,10 +43,11 @@ class Activity extends \common\models\Activity
      */
     public static function joinActivityData($act_id, $product_id)
     {
-        $activity = Activity::findOne($act_id)->toArray();
+        $activity = Activity::findOne($act_id);
         if (empty($activity)) {
             throw new NotFoundHttpException('您访问的页面不存在!');
         }
+        $activity=$activity->toArray();
         $product = Product::find()->where(['id' => $product_id])->asArray()->one();
         $activity['product'] = $product;
         $topCarousels = Media::find()

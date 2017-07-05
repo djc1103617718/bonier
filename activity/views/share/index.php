@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <p>当前<a style="background:#CE0000"><?=$order->price/100?></a>元，可降至<?=$mold['product']['reserve_price']/100?>元</p>
 					 <div class="desc">
 						<ul class="list2">
-						  <li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/index', 'id' => $order->act_id, 'product_id' => $order->product_id])?>" class="link">我要参与活动</a></span></li>
+						  <li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['site/index', 'id' => $order->act_id])?>" class="link">我要参与活动</a></span></li>
 						  <li class="list2_left"><span class="m_2"><a href="<?=\yii\helpers\Url::to(['join/help-bargain', 'id' => $order->order_number])?>" class="link1">帮他砍价</a></span></li>
 						  <div class="clearfix"> </div>
 						</ul>

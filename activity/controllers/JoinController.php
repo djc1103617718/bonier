@@ -47,10 +47,15 @@ class JoinController extends BaseController
             if (!$order->save()) {
                 throw new Exception('error');
             }
+
             return $this->redirect(['index', 'id' => $order->order_number]);
         }
+        $mold = Activity::joinActivityData($id, $product_id);
+        $userProductImgList = Activity::userProductImgList($mold['user_id']);
         return $this->render('order-before',[
-            'model' => $model
+            'model' => $model,
+            'mold' => $mold,
+            'userProductImgList' => $userProductImgList,
         ]);
     }
 
@@ -65,7 +70,7 @@ class JoinController extends BaseController
     public function actionIndex($id)
     {
         $this->layout = false;
-        $order = Order::findOne($id);
+        $order = Order::findOne(['order_number' => $id]);
         if (empty($order)) {
             throw new NotFoundHttpException();
         }
@@ -75,7 +80,7 @@ class JoinController extends BaseController
         $wechat = Wechat::findOne(['open_id' => $open_id]);
 
         // 检查活动是否已经发布以及是否已经结束
-        $activity = Activity::findOne($id);
+        $activity = Activity::findOne($order['act_id']);
         if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
             return $this->redirect(Yii::$app->request->referrer);
         }

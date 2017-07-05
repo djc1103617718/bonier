@@ -137,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$reserve_price = $product['reserve_price']/100;
 			echo "<p style='padding-left:115px;color:#000;font-size:10px'>零售价：{$start_price}元</p>";
 			echo '<ul class="list2" style="margin-top:10px;padding-right:10px">';
-			$join_url = \yii\helpers\Url::to(['join/index', 'id' => $mold['id'], 'product_id' => $product['id']]);
+			$join_url = \yii\helpers\Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $product['id']]);
 			echo "<li class='list2_left'><a class='acount-btn' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em;background:#f71b1b'>底价{$reserve_price}元</a></li>";
 			echo "<li class='list2_right'><a class='acount-btn' href='{$join_url}' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em'>我要参与</a></li>";
 			echo '<div class="clearfix"> </div></ul></div></div>';
