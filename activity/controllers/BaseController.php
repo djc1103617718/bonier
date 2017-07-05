@@ -21,11 +21,7 @@ class BaseController extends Controller
         // 检查用户是否已经登录
         $session = Yii::$app->session;
         $get = Yii::$app->request->get();
-        if (isset($get['ref'])) {
-            $session['pre_page_url'] = $get['ref'];
-        } else {
-            $session['pre_page_url'] = Yii::$app->request->referrer;
-        }
+        $session['pre_page_url'] = Yii::$app->request->referrer;
         return $this->redirect(['site/login']);
 
         if (!$session->get('open_id')) {
