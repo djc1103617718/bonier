@@ -57,11 +57,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
 <body onload="time_fun()" style="background:#217307">
+<?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
+<embed src="<?php if ($mold['music']) { echo $baseUrl . $mold['music']; }?>" loop='true'></embed>
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider">
 			<ul class="rslides" id="slider">
 				<?php
-				$baseUrl = Yii::$app->params['frontend_host'] . '/';
 				if ($mold && !empty($mold['top_carousels'])){
 					foreach ($mold['top_carousels'] as $url) {
 						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:30%' alt=''/></li>";

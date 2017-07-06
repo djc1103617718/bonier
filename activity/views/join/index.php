@@ -4,7 +4,7 @@ use yii\helpers\Url;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>砍价商品</title>
+<title><?=$mold['name']?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -56,6 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
 <body onload="time_fun()" style="background:#217307">
+<?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
+<embed src="<?php if ($mold['music']) { echo $baseUrl . $mold['music']; }?>" loop='true'></embed>
 	<div class="container"  style="padding-left:5px;padding-right:5px">
 		<div class="index_slider">
 			<ul class="rslides" id="slider">
