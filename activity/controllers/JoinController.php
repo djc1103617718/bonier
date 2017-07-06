@@ -240,6 +240,7 @@ class JoinController extends BaseController
         if (empty($order)) {
             throw new NotFoundHttpException('找不到对应的页面');
         }
+
     }
 
     private function randBargain($remained_num, $remained_price)

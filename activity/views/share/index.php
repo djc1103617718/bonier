@@ -4,7 +4,7 @@ use yii\helpers\Url;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>砍价商品</title>
+<title> <?=$wechat->nickname . '在参与' . $mold['name'] . '活动'?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
