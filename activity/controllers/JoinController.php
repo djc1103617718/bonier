@@ -33,6 +33,7 @@ class JoinController extends BaseController
             // 检查活动是否已经发布以及是否已经结束
             $activity = Activity::findOne($id);
             if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
+                Yii::$app->session->setFlash('error', '活动已经结束');
                 return $this->redirect(Yii::$app->request->referrer);
             }
 
