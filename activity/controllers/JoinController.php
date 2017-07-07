@@ -58,7 +58,7 @@ class JoinController extends BaseController
             echo"3<br/>";
             return $this->redirect(['index', 'id' => $order->order_number]);
         }
-        echo '4<br/>';die;
+        var_dump($model->errors);echo"<br/>";var_dump(Yii::$app->request->isPost);die;
         $mold = Activity::joinActivityData($id, $product_id);
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
         return $this->render('order-before',[
