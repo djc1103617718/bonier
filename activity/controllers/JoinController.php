@@ -2,6 +2,7 @@
 namespace activity\controllers;
 
 use activity\models\Address;
+use common\models\User;
 use Yii;
 use activity\models\OrderBefore;
 use activity\models\Product;
@@ -92,14 +93,15 @@ class JoinController extends BaseController
         }
 
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
+        $user = User::findOne($mold['user_id']);
         if (!isset($user['shop_name']) || empty($user['shop_name'])) {
-            Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
+            //var_dump($user);die;
+            Yii::$app->session->setFlash('error', '商家信息不完善,暂时不能下单');
             return $this->redirect(Yii::$app->request->referrer);
         }
         $address = Address::find()->where(['user_id' => $mold['user_id']])->one();
         if (empty($address)) {
-            die('2');
-            Yii::$app->session->setFlash('error', '请完善店铺信息');
+            Yii::$app->session->setFlash('error', '商家信息不完善,暂时不能下单');
             return $this->redirect(Yii::$app->request->referrer);
         }
         return $this->render('index', [
