@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'public' => function ($url, $model, $key) {
                         return \common\helper\views\ColumnDisplay::operatingDelete(
                             [
-                                'url' => ['activity', 'id' => $model->id],
+                                'url' => ['activity/public', 'id' => $model->id],
                                 'method' => 'post',
                                 'title' => '确认发布活动',
                                 'content' => '一旦发布,用户将可以下单,该活动亦将不可更改,您确认发布该活动吗?',
