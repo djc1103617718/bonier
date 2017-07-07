@@ -148,6 +148,7 @@ code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
                 Yii::$app->session->set('open_id', $response['openid']);
                 return $this->redirect(Yii::$app->session->get('pre_page_url'));
             }
+            var_dump($user_info);die;
             // 新用户入库
             $wechat = new Wechat();
             $wechat->open_id = $response['openid'];
