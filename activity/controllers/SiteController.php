@@ -148,14 +148,14 @@ code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
                 Yii::$app->session->set('open_id', $response['openid']);
                 return $this->redirect(Yii::$app->session->get('pre_page_url'));
             }
-            var_dump($user_info);die;
+            //var_dump($user_info);die;
             // 新用户入库
             $wechat = new Wechat();
             $wechat->open_id = $response['openid'];
             $wechat->access_token = $response['access_token'];
             $wechat->refresh_token = $response['refresh_token'];
             $wechat->expires_in = $response['expires_in'];
-            $wechat->unionid = $user_info['unionid'];
+            //$wechat->unionid = $user_info['unionid'];
             $wechat->avatar = $user_info['headimgurl'];
             $wechat->nickname = $user_info['nickname'];
             $wechat->country = $user_info['country'];
