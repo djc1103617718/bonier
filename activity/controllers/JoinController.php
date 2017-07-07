@@ -27,7 +27,6 @@ class JoinController extends BaseController
         $this->layout = false;
         $model = new OrderBefore();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            echo "1<br/>";die;
             $mold = Activity::joinActivityData($id, $product_id);
             $open_id = Yii::$app->session->get('open_id');
 
@@ -35,10 +34,12 @@ class JoinController extends BaseController
             $activity = Activity::findOne($id);
             if ($activity->status != Activity::STATUS_PUBLIC) {
                 Yii::$app->session->setFlash('error', '活动尚未正式发布');
+                die('1.1');
                 return $this->redirect(Yii::$app->request->referrer);
             }
             if (strtotime($activity->end_time) < time()) {
                 Yii::$app->session->setFlash('error', '活动已经结束');
+                die('1.2');
                 return $this->redirect(Yii::$app->request->referrer);
             }
             echo '2<br/>';die;
