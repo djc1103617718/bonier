@@ -2,9 +2,11 @@
 namespace activity\controllers;
 
 use activity\models\Activity;
+use activity\models\Address;
 use activity\models\AppWechat;
 use activity\models\Wechat;
 use common\components\HttpQuery;
+use common\models\User;
 use Yii;
 use yii\base\Exception;
 use yii\helpers\ArrayHelper;
@@ -79,11 +81,23 @@ class SiteController extends Controller
 
         $mold = Activity::getMoldData($id);
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
+        $user = User::findOne($mold['user_id']);
+        if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        $address = Address::find()->where(['user_id' => $mold['user_id']])->one();
+        if (empty($address)) {
+            Yii::$app->session->setFlash('error', '请完善店铺信息');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
         //print_r($userProductImgList);die;
         return $this->render('index', [
             'mold' => $mold,
             'userProductImgList' => $userProductImgList,
             'allProductUrl' => Url::to(['site/index', 'id' => $id]),
+            'shop_name' => $user['shop_name'],
+            'address' => $address
         ]);
     }
 

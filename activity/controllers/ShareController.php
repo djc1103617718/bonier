@@ -31,11 +31,23 @@ class ShareController extends Controller
         $open_id = $order->open_id;
         $wechat = Wechat::findOne(['open_id' => $open_id]);
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
+        $user = User::findOne($mold['user_id']);
+        if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        $address = Address::find()->where(['user_id' => $mold['user_id']])->one();
+        if (empty($address)) {
+            Yii::$app->session->setFlash('error', '请完善店铺信息');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
         return $this->render('index', [
             'mold' => $mold,
             'order' => $order,
             'userProductImgList' => $userProductImgList,
             'wechat' => $wechat,
+            'shop_name' => $user['shop_name'],
+            'address' => $address
         ]);
     }
 

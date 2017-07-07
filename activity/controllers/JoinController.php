@@ -1,6 +1,7 @@
 <?php
 namespace activity\controllers;
 
+use activity\models\Address;
 use Yii;
 use activity\models\OrderBefore;
 use activity\models\Product;
@@ -86,12 +87,22 @@ class JoinController extends BaseController
         }
 
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
-
+        if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        $address = Address::find()->where(['user_id' => $mold['user_id']])->one();
+        if (empty($address)) {
+            Yii::$app->session->setFlash('error', '请完善店铺信息');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
         return $this->render('index', [
             'mold' => $mold,
             'order' => $order,
             'userProductImgList' => $userProductImgList,
             'wechat' => $wechat,
+            'shop_name' => $user['shop_name'],
+            'address' => $address
         ]);
     }
 
@@ -218,13 +229,26 @@ class JoinController extends BaseController
             ->where(['user_id' => $activity['user_id'], 'category' => Category::CATEGORY_TOP_CAROUSEL])
             ->column();
         $userProductImgList = Activity::userProductImgList($activity['user_id']);
+
+        $userProductImgList = Activity::userProductImgList($activity['user_id']);
+        if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        $address = Address::find()->where(['user_id' => $activity['user_id']])->one();
+        if (empty($address)) {
+            Yii::$app->session->setFlash('error', '请完善店铺信息');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
         //var_dump($myProducts);die;
         return $this->render('my-product', [
             'activity' => $activity,
             'userProductImgList' => $userProductImgList,
             'orders' => $orders,
             'myProducts' => $myProducts,
-            'topCarousels' => $topCarousels
+            'topCarousels' => $topCarousels,
+            'shop_name' => $user['shop_name'],
+            'address' => $address
 
         ]);
     }

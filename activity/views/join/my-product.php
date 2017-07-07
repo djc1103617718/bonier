@@ -149,8 +149,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="footer">
 		<div class="container">
-			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.公司名字</p>
-			<p class="copy">联系电话：0731-12345678 15515151234 </p>
+			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.<?=$shop_name?></p>
+			<p class="copy">联系电话：<?=$address['Landline'] . ' ' . $address['phone']?> </p>
 			<p class="copy" style="margin-bottom:10px">技术支持：15773276075</p>
 		</div>
 	</div>
