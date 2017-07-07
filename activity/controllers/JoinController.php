@@ -50,12 +50,10 @@ class JoinController extends BaseController
             $order->price = $mold['product']['start_price'];
             $order->act_id = $id;
             if (!$order->save()) {
-                die('2.1');
                 Yii::$app->session->setFlash('error', '提交失败');
                 return $this->redirect(Yii::$app->request->referrer);
             }
-            echo"3<br/>";die;
-            return $this->redirect(['index', 'id' => $order->order_number]);
+            return $this->redirect(['join/index', 'id' => $order->order_number]);
         }
         //var_dump($model->errors);echo"<br/>";var_dump(Yii::$app->request->isPost);die;
         $mold = Activity::joinActivityData($id, $product_id);
@@ -95,11 +93,13 @@ class JoinController extends BaseController
 
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
         if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            die('1');
             Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
             return $this->redirect(Yii::$app->request->referrer);
         }
         $address = Address::find()->where(['user_id' => $mold['user_id']])->one();
         if (empty($address)) {
+            die('2');
             Yii::$app->session->setFlash('error', '请完善店铺信息');
             return $this->redirect(Yii::$app->request->referrer);
         }
