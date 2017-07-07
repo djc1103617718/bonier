@@ -260,8 +260,6 @@ class JoinController extends BaseController
             ->where(['user_id' => $activity['user_id'], 'category' => Category::CATEGORY_TOP_CAROUSEL])
             ->column();
         $userProductImgList = Activity::userProductImgList($activity['user_id']);
-
-        $userProductImgList = Activity::userProductImgList($activity['user_id']);
         if (!isset($user['shop_name']) || empty($user['shop_name'])) {
             Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
             return $this->redirect(Yii::$app->request->referrer);
