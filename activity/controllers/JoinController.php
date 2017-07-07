@@ -32,7 +32,11 @@ class JoinController extends BaseController
 
             // 检查活动是否已经发布以及是否已经结束
             $activity = Activity::findOne($id);
-            if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
+            if ($activity->status != Activity::STATUS_PUBLIC) {
+                Yii::$app->session->setFlash('error', '活动尚未正式发布');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+            if (strtotime($activity->end_time) < time()) {
                 Yii::$app->session->setFlash('error', '活动已经结束');
                 return $this->redirect(Yii::$app->request->referrer);
             }
@@ -47,6 +51,7 @@ class JoinController extends BaseController
             $order->price = $mold['product']['start_price'];
             $order->act_id = $id;
             if (!$order->save()) {
+                var_dump($order->errors);die;
                 throw new Exception('error');
             }
 
