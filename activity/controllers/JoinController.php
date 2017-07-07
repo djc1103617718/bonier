@@ -51,8 +51,8 @@ class JoinController extends BaseController
             $order->price = $mold['product']['start_price'];
             $order->act_id = $id;
             if (!$order->save()) {
-                var_dump($order->errors);die;
-                throw new Exception('error');
+                Yii::$app->session->setFlash('error', '提交失败');
+                return $this->redirect(Yii::$app->request->referrer);
             }
 
             return $this->redirect(['index', 'id' => $order->order_number]);
