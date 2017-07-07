@@ -105,7 +105,7 @@ class SiteController extends Controller
      * 客户通过微信登陆平台
      *
      */
-    public function actionLogin()
+    /*public function actionLogin()
     {
         $model = new AppWechat();
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
@@ -115,20 +115,20 @@ code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         //$request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
         //var_dump($request_url);die;
         return $this->redirect($request_url);
-    }
-    /*public function actionLogin()
+    }*/
+    public function actionLogin()
     {
         $model = new AppWechat();
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
-        $request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
+        $request_url = sprintf($model::PUBLIC_CODE_URL, $model->app_id, $redirect_url, $scope);
         return $this->redirect($request_url);
-    }*/
+    }
 
     public function actionLoginProcess()
     {
         $data = Yii::$app->request->get();
-        var_dump($data);die;
+        //var_dump($data);die;
         if (!isset($data['code'])) {
             return $this->redirect(['login']);
         }
