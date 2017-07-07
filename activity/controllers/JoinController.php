@@ -34,15 +34,12 @@ class JoinController extends BaseController
             $activity = Activity::findOne($id);
             if ($activity->status != Activity::STATUS_PUBLIC) {
                 Yii::$app->session->setFlash('error', '活动尚未正式发布');
-                die('1.1');
                 return $this->redirect(Yii::$app->request->referrer);
             }
             if (strtotime($activity->end_time) < time()) {
                 Yii::$app->session->setFlash('error', '活动已经结束');
-                die('1.2');
                 return $this->redirect(Yii::$app->request->referrer);
             }
-            echo '2<br/>';die;
             $order = new Order();
             $order->open_id = $open_id;
             $order->customer_name = $model->name;
@@ -53,6 +50,7 @@ class JoinController extends BaseController
             $order->price = $mold['product']['start_price'];
             $order->act_id = $id;
             if (!$order->save()) {
+                die('2.1');
                 Yii::$app->session->setFlash('error', '提交失败');
                 return $this->redirect(Yii::$app->request->referrer);
             }
