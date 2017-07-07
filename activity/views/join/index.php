@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							$join_url = \yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number]);
 							$price_url = Url::to(['join/bargain-detail', 'id' => $order->order_number]);
 							?>
-							<li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number, 'ref' => $join_url])?>" class="link">参与活动</a></span></li>
+							<li class="list2_right"><span class="m_1"><a href="<?=\yii\helpers\Url::to(['join/confirm', 'id' => $order->order_number, 'ref' => $join_url])?>" class="link">确认参与活动</a></span></li>
 							<li class="list2_left"><span class="m_2"><a href="<?=Url::to(['join/bargain-detail', 'id' => $order->order_number, 'ref' => $price_url])?>" class="link1">我的价格变动明细</a></span></li>
 						  <div class="clearfix"> </div>
 						</ul>
