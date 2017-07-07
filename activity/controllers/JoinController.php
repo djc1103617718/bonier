@@ -140,6 +140,29 @@ class JoinController extends BaseController
             if ($product->update() === false) {
                 throw new Exception('error');
             }
+            // 自己砍一刀
+            $open_id = Yii::$app->session->get('open_id');
+
+            //参与帮忙减价并入库
+            $bargainPartner = new BargainPartner();
+            $bargainPartner->open_id = $open_id;
+            $bargainPartner->created_at = date('Y-m-d H:i:s', time());
+            $bargainPartner->order_id = $order->id;
+            $bargained_num = $order->bargained_num;
+            $product = Product::findOne($order->product_id);
+            $remained_bargained_num = $product->bargain_num - $bargained_num;
+            $remained_price = $order->price - $product->reserve_price;
+            $bargainPartner->decrease_price = $this->randBargain($remained_bargained_num, $remained_price);
+            if (!$bargainPartner->save()) {
+                throw new Exception('error');
+            }
+
+            $order->bargained_num += 1;
+            $order->price -= $bargainPartner->decrease_price;
+            if (!$order->update()) {
+                throw new Exception('error');
+            }
+
             $transaction->commit();
             // 帮忙砍价的页面
             return $this->redirect(['share/index', 'id' => $id]);
