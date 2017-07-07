@@ -64,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$baseUrl = Yii::$app->params['frontend_host'] . '/';
 				if ($mold && !empty($mold['top_carousels'])){
 					foreach ($mold['top_carousels'] as $url) {
-						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:400px' alt=''/></li>";
+						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:30%' alt=''/></li>";
 					}
 				} else {?>
 					<li><img src="<?=Url::to('@web/images/picture1.jpg', true)?>" class="img-responsive" style="width:100%;height:400px" alt=""/></li>
@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div id="bottom">
 		<?php
 		$my_product_url = \yii\helpers\Url::to(['join/my-product', 'id' => $mold['id']]);
-		?>>
+		?>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['site/index', 'id' => $mold['id']])?>" style="float:left;margin-left:20px;border-radius:100px">全部商品</a>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['share/address', 'id' => $mold['id']])?>" style="border-radius:100px">领取地址</a>
 		<a class="acount-btn" href="<?=\yii\helpers\Url::to(['join/my-product', 'id' => $mold['id'], 'ref' => $my_product_url])?>" style="float:right;margin-right:20px;border-radius:100px">我的商品</a>
