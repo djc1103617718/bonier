@@ -93,7 +93,6 @@ class JoinController extends BaseController
 
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
         if (!isset($user['shop_name']) || empty($user['shop_name'])) {
-            die('1');
             Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
             return $this->redirect(Yii::$app->request->referrer);
         }
