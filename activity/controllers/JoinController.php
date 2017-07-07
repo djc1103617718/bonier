@@ -27,6 +27,7 @@ class JoinController extends BaseController
         $this->layout = false;
         $model = new OrderBefore();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            echo "1<br/>";
             $mold = Activity::joinActivityData($id, $product_id);
             $open_id = Yii::$app->session->get('open_id');
 
@@ -40,7 +41,7 @@ class JoinController extends BaseController
                 Yii::$app->session->setFlash('error', '活动已经结束');
                 return $this->redirect(Yii::$app->request->referrer);
             }
-
+            echo '2<br/>';
             $order = new Order();
             $order->open_id = $open_id;
             $order->customer_name = $model->name;
@@ -54,9 +55,10 @@ class JoinController extends BaseController
                 Yii::$app->session->setFlash('error', '提交失败');
                 return $this->redirect(Yii::$app->request->referrer);
             }
-
+            echo"3<br/>";
             return $this->redirect(['index', 'id' => $order->order_number]);
         }
+        echo '4<br/>';die;
         $mold = Activity::joinActivityData($id, $product_id);
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
         return $this->render('order-before',[
