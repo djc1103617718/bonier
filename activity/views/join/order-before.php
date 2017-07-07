@@ -64,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$baseUrl = Yii::$app->params['frontend_host'] . '/';
 				if ($mold && !empty($mold['top_carousels'])){
 					foreach ($mold['top_carousels'] as $url) {
-						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:400px' alt=''/></li>";
+						echo "<li><img src=$baseUrl$url class='img-responsive' style='width:100%;height:30%' alt=''/></li>";
 					}
 				} else {?>
 					<li><img src="<?=Url::to('@web/images/picture1.jpg', true)?>" class="img-responsive" style="width:100%;height:400px" alt=""/></li>
