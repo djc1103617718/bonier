@@ -154,7 +154,7 @@ code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
             $wechat->access_token = $response['access_token'];
             $wechat->refresh_token = $response['refresh_token'];
             $wechat->expires_in = $response['expires_in'];
-            $wechat->unionid = $response['unionid'];
+            $wechat->unionid = $user_info['unionid'];
             $wechat->avatar = $user_info['headimgurl'];
             $wechat->nickname = $user_info['nickname'];
             $wechat->country = $user_info['country'];
