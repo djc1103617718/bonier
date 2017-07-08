@@ -7,9 +7,9 @@ use yii\web\NotFoundHttpException;
 
 class BargainPartner extends \common\models\BargainPartner
 {
-    public static function bargainList($order_num)
+    public static function bargainList($order_number)
     {
-        $order = Order::findOne(['order_name' => $order_num]);
+        $order = Order::findOne(['order_number' => $order_number]);
         if (empty($order)) {
             throw new NotFoundHttpException();
         }
