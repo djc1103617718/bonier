@@ -45,10 +45,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="men" style="padding-bottom:23%">
 		<div class="container" style="padding-left:5px;padding-right:5px">
 			<div class="wishlist">
-				<h4 class="title" style="padding-bottom:7px"><img class="image" src="images/picture4.jpg" />微信昵称<p style="float:right;margin-top:4px">减了20.12元</p></h4>
-				<h4 class="title" style="padding-bottom:7px"><img class="image" src="images/picture4.jpg" />微信昵称<p style="float:right;margin-top:4px">减了123.51元</p></h4>
-				<h4 class="title" style="padding-bottom:7px"><img class="image" src="images/picture4.jpg" />微信昵称<p style="float:right;margin-top:4px">减了15.23元</p></h4>
-				<h4 class="title" style="padding-bottom:7px"><img class="image" src="images/picture4.jpg" />微信昵称<p style="float:right;margin-top:4px">减了67.47元</p></h4>
+				<?php
+				if ($wechatPartner) {
+					foreach ($wechatPartner as $item) {
+						echo "<h4 class='title' style='padding-bottom:7px'><img class='image' src='{$item["avatar"]}' />{$item['nickname']}<p style='float:right;margin-top:4px'>减了元</p></h4>";
+					}
+				}
+				?>
 			 </div>
 		 </div>
 	</div>

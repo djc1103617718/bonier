@@ -1,18 +1,18 @@
 <?php
 namespace activity\controllers;
 
+use Yii;
 use activity\models\Address;
 use common\models\User;
-use Yii;
 use activity\models\OrderBefore;
 use activity\models\Product;
-use common\models\BargainPartner;
+use activity\models\BargainPartner;
 use common\models\Category;
 use activity\models\Activity;
 use activity\models\Media;
 use activity\models\Order;
 use common\helper\IdBuilder;
-use common\models\Wechat;
+use activity\models\Wechat;
 use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 
@@ -286,14 +286,17 @@ class JoinController extends BaseController
      *  价格变动明细
      *
      * @param string $id order_number
+     * @return string
+     * @throws NotFoundHttpException
      */
     public function actionBargainDetail($id)
     {
-        $order = Order::findOne(['order_number' => $id]);
-        if (empty($order)) {
-            throw new NotFoundHttpException('找不到对应的页面');
-        }
+        $wechatPartner = BargainPartner::bargainList($id);
+        var_dump($wechatPartner);die;
 
+        return $this->render('bargain_detail', [
+            'bargainPartner' => $wechatPartner,
+        ]);
     }
 
     private function randBargain($remained_num, $remained_price)
