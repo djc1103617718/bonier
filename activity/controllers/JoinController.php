@@ -291,11 +291,10 @@ class JoinController extends BaseController
      */
     public function actionBargainDetail($id)
     {
-        $wechatPartner = BargainPartner::bargainList($id);
-        var_dump($wechatPartner);die;
+        $bargainPartner = BargainPartner::bargainList($id);
 
         return $this->render('bargain_detail', [
-            'bargainPartner' => $wechatPartner,
+            'bargainPartner' => $bargainPartner,
         ]);
     }
 
