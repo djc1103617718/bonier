@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<?php
 				if ($bargainPartner) {
 					foreach ($bargainPartner as $item) {
-						echo "<h4 class='title' style='padding-bottom:7px'><img class='image' src='{$item["avatar"]}' />{$item['nickname']}<p style='float:right;margin-top:4px'>减了元</p></h4>";
+						echo "<h4 class='title' style='padding-bottom:7px'><img class='image' src='{$item["avatar"]}' />{$item['nickname']}<p style='float:right;margin-top:4px'>减了{$item['decrease_price']}元</p></h4>";
 					}
 				}
 				?>
