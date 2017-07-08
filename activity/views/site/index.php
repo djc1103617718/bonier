@@ -41,6 +41,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
 	  z-index: -1;
 	}
+	#audio1 {
+	border-style:ridge;
+    border-color:#c3eefd;
+    border-width:15px;
+    }
 </style>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
@@ -68,10 +73,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     });
 </script>
+<script>
+function playmusic() {
+document.getElementById("audio1").play();
+}
+</script>
 <script src="<?=Url::to('@web/js/jquery.countdown.js', true)?>"></script>
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
-<body onload="time_fun()" style="background:#217307">
+<body onload="playmusic();" style="background:#217307">
+    <audio id="audio1">
+	    <source src="Kalimba.mp3">
+    </audio>
 <?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider" name="头部轮播图">
