@@ -291,6 +291,7 @@ class JoinController extends BaseController
      */
     public function actionBargainDetail($id)
     {
+        $this->layout = false;
         $bargainPartner = BargainPartner::bargainList($id);
 
         return $this->render('bargain_detail', [
