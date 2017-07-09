@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<div style="padding:20px;color: #ffffff"> 打开微信客户端的<span style="font-weight: bold;color: #ac2925">[ 分享给朋友 ]</span>就可以邀请好友帮您砍价了</div>
+	<div style="padding:20px;color: #ffffff"> 打开微信客户端的<span style="font-weight: bold;color: #ac2925"> [分享给朋友] </span>就可以邀请好友帮您砍价了</div>
 
 	<img src="images/picture10.jpg" style="margin-top:10px;width:100%">
 	<div class="footer">
