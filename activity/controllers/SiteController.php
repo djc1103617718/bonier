@@ -78,7 +78,12 @@ class SiteController extends Controller
     public function actionIndex($id)
     {
         $this->layout = false;
-
+        $activity = Activity::findOne($id);
+        if (empty($activity)) {
+            throw new NotFoundHttpException('找不到该页面!');
+        }
+        $activity['pageviews'] += 1;
+        $activity->update();
         $mold = Activity::getMoldData($id);
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
         $user = User::findOne($mold['user_id']);
