@@ -97,7 +97,7 @@ class UploadController extends  BaseController
 
         $fileNum = count($files['name']);
         for ($i = 0; $i < $fileNum; $i++) {
-            if ($files['size'][$i] > 2048000) {
+            if ($files['size'][$i] > 8048000) {
                 Yii::$app->session->setFlash('error', '文件大小不能超过2M');
                 return $this->redirect(Yii::$app->request->referrer);
             }

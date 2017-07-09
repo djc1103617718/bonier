@@ -110,17 +110,6 @@ class SiteController extends Controller
      * 客户通过微信登陆平台
      *
      */
-    /*public function actionLogin()
-    {
-        $model = new AppWechat();
-        $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
-        $scope = 'snsapi_userinfo';
-        $request_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxeb82425d73c76b52&redirect_uri=$redirect_url&response_type=
-code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        //$request_url = sprintf($model::LOGIN_API, $model->app_id, $redirect_url, $scope);
-        //var_dump($request_url);die;
-        return $this->redirect($request_url);
-    }*/
     public function actionLogin()
     {
         $model = new AppWechat();
