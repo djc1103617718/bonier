@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 </div>
 	</div>
 	<div id="bottom">
-		<a class="acount-btn" href="bargain_page_mine.html" style="border-radius:100px;padding-left:50px;padding-right:50px;margin-top:2px"> 返回</a>
+		<a class="acount-btn" href="<?=Yii::$app->request->referrer?>" style="border-radius:100px;padding-left:50px;padding-right:50px;margin-top:2px"> 返回</a>
 	</div>
 </body>
 </html>		
