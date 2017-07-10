@@ -9,6 +9,14 @@ use yii\helpers\Url;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CSS buttons with pseudo-elements" />
+<meta name="keywords" content="css, css3, pseudo, buttons, anchor, before, after, web design" />
+<meta name="author" content="Sergio Camalich for Codrops" />
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="<?=Url::to('@web/css/demo.css', true)?>" />
+<link rel="stylesheet" type="text/css" href="<?=Url::to('@web/css/style4.css', true)?>" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="<?=Url::to('@web/css/bootstrap.css', true)?>" rel='stylesheet' type='text/css' />
 <style type="text/css">
@@ -152,13 +160,32 @@ document.getElementById("audio1").play();
 			echo '<ul class="list2" style="margin-top:10px;padding-right:10px">';
 			$jUrl = \yii\helpers\Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $product['id']]);
 			$join_url = \yii\helpers\Url::to(['join/order-before', 'id' => $mold['id'], 'product_id' => $product['id'], 'ref' => $jUrl]);
-			echo "<li class='list2_left'><a class='acount-btn' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em;background:#f71b1b'>底价{$reserve_price}元</a></li>";
-			echo "<li class='list2_right'><a class='acount-btn' href='{$join_url}' style='margin-left:20px;border-radius:100px;font-size:15px;padding:0.1em 1.0em'>我要参与</a></li>";
+			echo "<li class='list2_left'><a class='acount-btn' style='border-radius:100px;font-size:15px;padding:0.1em 1.0em;background:#f71b1b'>底价{$reserve_price}元</a></li>";
+			echo "<li class='list2_right'><a class='acount-btn' href='{$join_url}' style='margin-left:10px;border-radius:100px;font-size:15px;padding:0.1em 1.0em'>我要参与</a></li>";
 			echo '<div class="clearfix"> </div></ul></div></div>';
 		}
 	}?>
 
 	<img src="images/picture10.jpg" style="margin-top:10px;width:100%">
+
+	<div class="container" style="margin-top:10px;padding-left:5px;padding-right:5px;padding-bottom:20px">
+		<h3 align="left">促销商家推荐</h3>
+		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
+			商家
+		</a>
+		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
+			商家名字
+		</a>
+		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
+			商家名字字
+		</a>
+		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
+			商家名字
+		</a>
+		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
+			商家名字
+		</a>
+	</div>
 
 	<div class="footer">
 		<div class="container">
