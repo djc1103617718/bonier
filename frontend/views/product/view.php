@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     $btn = \common\helper\views\ButtonGroup::begin();
+    $btn->buttonDefault('添加', 'btn btn-success', 'add')->link(['product/create']);
     $btn->buttonDefault('更新', 'btn btn-primary', 'update')->link(['product/update', 'id' => $model->id]);
     $btn->buttonDefault('删除', 'btn btn-danger', 'delete')->confirm([
         'url' => ['product/delete', 'id' => $model->id],

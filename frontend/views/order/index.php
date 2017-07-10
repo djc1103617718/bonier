@@ -31,8 +31,20 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'order_number',
             'product_id',
-            'open_id',
+            [
+                'attribute' => 'open_id',
+                'value' => function ($model) {
+                    $wechat = \common\models\Wechat::findOne(['open_id' => $model->open_id]);
+                    if ($wechat) {
+                        return $wechat->nickname;
+                    }
+                }
+            ],
             'bargained_num',
+            [
+                'attribute' => 'phone',
+                'label' => '联系电话',
+            ],
             [
                 'attribute' => 'price',
                 'value' => function ($model) {

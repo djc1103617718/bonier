@@ -39,7 +39,7 @@ class UserController extends BaseController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            //'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -109,6 +109,18 @@ class UserController extends BaseController
         $model->update(false);
 
         return $this->redirect(['index']);
+    }
+
+    public function actionUnlock($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = $model::STATUS_ACTIVE;
+        if ($model->update(false) === false) {
+            Yii::$app->session->setFlash('error', '解锁失败!');
+        } else {
+            Yii::$app->session->setFlash('success', '解锁成功!');
+        }
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**

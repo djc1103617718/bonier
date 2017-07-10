@@ -119,6 +119,7 @@ class UploadController extends  BaseController
                     return $this->redirect(Yii::$app->request->referrer);
                 }
             } else {
+                die;
                 Yii::$app->session->setFlash('error', '文件:' . $files['name'][$i] . '上传失败!');
                 return $this->redirect(Yii::$app->request->referrer);
             }

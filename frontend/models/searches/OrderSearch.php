@@ -77,7 +77,7 @@ class OrderSearch extends Order
             'status' => $this->status,
             'created_at' => $this->created_at,
         ]);
-
+//var_dump($this->order_number);die;
         $query->andFilterWhere(['like', 'order_number', $this->order_number])
             ->andFilterWhere(['like', 'open_id', $this->open_id]);
 
