@@ -76,10 +76,11 @@ class UploadController extends  BaseController
     public function actionBackendMusic()
     {
         if (Yii::$app->request->isPost && !empty($_FILES)) {
+            var_dump($_FILES);die;
             $this->saveFiles('saveMusic');
         }
 
-        return $this->render('create',[
+        return $this->render('music-create',[
             'title' => '背景音乐上传',
             'action' => 'upload/backend-music'
         ]);
@@ -119,7 +120,6 @@ class UploadController extends  BaseController
                     return $this->redirect(Yii::$app->request->referrer);
                 }
             } else {
-                die;
                 Yii::$app->session->setFlash('error', '文件:' . $files['name'][$i] . '上传失败!');
                 return $this->redirect(Yii::$app->request->referrer);
             }
