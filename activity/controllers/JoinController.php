@@ -247,6 +247,7 @@ class JoinController extends BaseController
      */
     public function actionMyProduct($id)
     {
+        die;
         $this->layout = false;
         $activity = Activity::findOne($id)->toArray();
         $open_id = Yii::$app->session->get('open_id');
