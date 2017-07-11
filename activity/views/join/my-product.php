@@ -118,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						echo "<p>已还价{$bargained_num}次，还可还价{$remained_bargain_num}次</p>";
 						echo "<p>应付：{$current_price}元</p>";
 						echo '<ul class="list2">';
-						echo "<li class='list2_right'><span class='m_1'><a href='bargain_page.html' class='link'>立即查看</a></span></li>";
+						echo "<li class='list2_right'><span class='m_1'><a href='". Url::to(['join/bargain-detail', 'id' => $orders[$myProduct['id']]['order_number']]) ."' class='link'>立即查看</a></span></li>";
 						echo '<div class="clearfix"></div>';
 						echo '</ul>';
 						echo '</div>';
