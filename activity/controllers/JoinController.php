@@ -247,7 +247,6 @@ class JoinController extends BaseController
      */
     public function actionMyProduct($id)
     {
-        die;
         $this->layout = false;
         $activity = Activity::findOne($id)->toArray();
         $open_id = Yii::$app->session->get('open_id');
@@ -270,14 +269,17 @@ class JoinController extends BaseController
             ->column();
         $userProductImgList = Activity::userProductImgList($activity['user_id']);
         if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            die('1');
             Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
             return $this->redirect(Yii::$app->request->referrer);
         }
         $address = Address::find()->where(['user_id' => $activity['user_id']])->one();
         if (empty($address)) {
+            die('2');
             Yii::$app->session->setFlash('error', '请完善店铺信息');
             return $this->redirect(Yii::$app->request->referrer);
         }
+        die('3');
         //var_dump($myProducts);die;
         return $this->render('my-product', [
             'activity' => $activity,
