@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'productList' => $productList,
         'carousels' => $carousels,
         'backend_musics' => $backend_musics,
+        'promotionList' => $model->promotionList(),
+        'bottomImgList' => $model->bottomImgList(),
     ]) ?>
 
 </div>

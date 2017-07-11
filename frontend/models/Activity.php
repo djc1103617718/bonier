@@ -13,9 +13,16 @@ class Activity extends \common\models\Activity
 
     public function rules()
     {
-        $rules = parent::rules();
-        $rules[] = ['products', 'required'];
-        return $rules;
+        return [
+            [['start_time', 'end_time', 'carousels'], 'required'],
+            [['start_time', 'end_time', 'created_at', 'updated_at', 'music'], 'safe'],
+            [['user_id', 'status'], 'integer'],
+            [['name'], 'string', 'max' => 128],
+            ['products', 'required'],
+            ['announcement', 'string', 'max' => 356],
+            ['bottom_img', 'string', 'max' => 256],
+            ['promotion_shop', 'safe'],
+        ];
     }
 
     public function attributeLabels()
@@ -35,6 +42,25 @@ class Activity extends \common\models\Activity
             ->column();
     }
 
+    public function promotionList()
+    {
+        $promotionList = PromotionShop::find()
+            ->select('name')
+            ->where(['user_id' => Yii::$app->user->id])
+            ->indexBy('id')
+            ->column();
+        return $promotionList;
+    }
+
+    public function bottomImgList()
+    {
+        return Media::find()
+            ->select('url')
+            ->where(['user_id' => Yii::$app->user->id])
+            ->andWhere(['category' => Category::CATEGORY_BOTTOM_IMG])
+            ->column();
+    }
+
     public function create()
     {
         $now = date('Y-m-d', time());
@@ -50,6 +76,7 @@ class Activity extends \common\models\Activity
             return false;
         }
         $this->products = array_unique($this->products);
+        $this->promotion_shop = implode($this->promotion_shop);
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
@@ -83,6 +110,7 @@ class Activity extends \common\models\Activity
 
         $this->products = array_unique($this->products);
         $this->carousels = implode(',', $this->carousels);
+        $this->promotion_shop = implode(',', $this->promotion_shop);
         $transaction = Yii::$app->db->beginTransaction();
 
         try {

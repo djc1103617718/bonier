@@ -70,6 +70,17 @@ class UploadController extends  BaseController
         ]);
     }
 
+    public function actionBottomImg(){
+        if (Yii::$app->request->isPost && !empty($_FILES)) {
+            $this->saveFiles('saveBottomImg');
+        }
+
+        return $this->render('create',[
+            'title' => '活动底部图片上传',
+            'action' => 'upload/bottom-img'
+        ]);
+    }
+
     /**
      * @return string
      */

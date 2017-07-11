@@ -1,5 +1,6 @@
 ﻿<?php
 use yii\helpers\Url;
+use common\models\PromotionShop;
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -166,25 +167,22 @@ document.getElementById("audio1").play();
 		}
 	}?>
 
-	<img src="images/picture10.jpg" style="margin-top:10px;width:100%">
+	<img src="<?=$baseUrl.$mold['bottom_img']?>" style="margin-top:10px;width:100%">
 
 	<div class="container" style="margin-top:10px;padding-left:5px;padding-right:5px;padding-bottom:20px">
 		<h3 align="left">促销商家推荐</h3>
-		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
-			商家
-		</a>
-		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
-			商家名字
-		</a>
-		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
-			商家名字字
-		</a>
-		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
-			商家名字
-		</a>
-		<a class="a_demo_four pull-left" href="#" style="margin-right:3px;margin-bottom:10px;width:32%">
-			商家名字
-		</a>
+		<?php
+		if (!empty($mold['promotion_shop'])) {
+			$promotionList = explode(',', $mold['promotion_shop']);
+			$promotion_shop_list = PromotionShop::find()
+			->select(['url', 'name'])
+			->asArray()
+			->all();
+			foreach ($promotion_shop_list as $item) {
+				echo "<a class='a_demo_four pull-left' href='{$item['url']}' style='margin-right:3px;margin-bottom:10px;width:32%'>{$item['name']}</a>";
+			}
+		}
+		?>
 	</div>
 
 	<div class="footer">

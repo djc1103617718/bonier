@@ -65,6 +65,20 @@ class Upload extends Model
         return true;
     }
 
+    public function saveBottomImg($name, $url)
+    {
+        $model = new Media();
+        $model->user_id = Yii::$app->user->id;
+        $model->category = Category::CATEGORY_BOTTOM_IMG;
+        $model->type = Media::TYPE_IMG;
+        $model->url = $url;
+        $model->name = $name;
+        if (!$model->save()) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @param $name
      * @param $url

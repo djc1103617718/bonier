@@ -29,6 +29,8 @@ class Category extends Model
     const CATEGORY_TOP_CAROUSEL = '顶部轮播图';
     // 背景音乐
     const CATEGORY_BACKEND_MUSIC = '背景音乐';
+    // 底部图片
+    const CATEGORY_BOTTOM_IMG = '底部图片';
 
     /**
      * 媒体文件分类list

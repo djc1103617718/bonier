@@ -41,6 +41,11 @@ class JoinController extends BaseController
                 Yii::$app->session->setFlash('error', '活动已经结束');
                 return $this->redirect(Yii::$app->request->referrer);
             }
+            if (strtotime($activity->start_time) > time()) {
+                Yii::$app->session->setFlash('error', '活动时间未到');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
             $order = new Order();
             $order->open_id = $open_id;
             $order->customer_name = $model->name;
@@ -88,7 +93,7 @@ class JoinController extends BaseController
 
         // 检查活动是否已经发布以及是否已经结束
         $activity = Activity::findOne($order['act_id']);
-        if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
+        if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time()) || (strtotime($activity->start_time) > time())) {
             return $this->redirect(Yii::$app->request->referrer);
         }
 
@@ -192,6 +197,9 @@ class JoinController extends BaseController
                 ->where(['id' => $order->act_id])
                 ->one();
             if (empty($activity) || (strtotime($activity->end_time) < time())) {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+            if (strtotime($activity->start_time) > time()) {
                 return $this->redirect(Yii::$app->request->referrer);
             }
 
