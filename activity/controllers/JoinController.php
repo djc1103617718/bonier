@@ -252,21 +252,18 @@ class JoinController extends BaseController
         $open_id = Yii::$app->session->get('open_id');
         $orders = Order::find()
             ->where(['open_id' => $open_id, 'status' => Order::STATUS_VALID, 'act_id' => $id])
-            ->indexBy('product_id')
             ->asArray()
             ->all();
-        var_dump('open_id:' . $open_id);
-        var_dump($orders);die;
         $myProductIds = Order::find()
-            ->select('id')
             ->where(['open_id' => $open_id, 'status' => Order::STATUS_VALID, 'act_id' => $id])
+            ->select('product_id')
             ->column();
-        var_dump('ids:'.$myProductIds);
+
         $myProducts = Product::find()
             ->where(['id' => $myProductIds])
             ->asArray()
             ->all();
-        var_dump($myProducts);die;
+        //var_dump($myProducts);die;
         $topCarousels = Media::find()
             ->select('url')
             ->where(['user_id' => $activity['user_id'], 'category' => Category::CATEGORY_TOP_CAROUSEL])
