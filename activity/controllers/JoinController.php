@@ -255,10 +255,13 @@ class JoinController extends BaseController
             ->indexBy('product_id')
             ->asArray()
             ->all();
+        var_dump('open_id:' . $open_id);
+        var_dump('orders:'.$orders);
         $myProductIds = Order::find()
             ->select('id')
             ->where(['open_id' => $open_id, 'status' => Order::STATUS_VALID, 'act_id' => $id])
             ->column();
+        var_dump('ids:'.$myProductIds);
         $myProducts = Product::find()
             ->where(['id' => $myProductIds])
             ->asArray()
