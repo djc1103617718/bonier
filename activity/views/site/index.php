@@ -91,11 +91,11 @@ document.getElementById("audio1").play();
 <script src="<?=Url::to('@web/js/jquery.countdown.js', true)?>"></script>
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
+<?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
 <body onload="playmusic();" style="background:#217307">
     <audio id="audio1">
-	    <source src="Kalimba.mp3">
+	    <source src="<?=$baseUrl . $mold['music']?>">
     </audio>
-<?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider" name="头部轮播图">
 			<ul class="rslides" id="slider">
