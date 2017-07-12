@@ -2,16 +2,15 @@
 
 namespace frontend\models\searches;
 
-use frontend\models\Activity;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Order;
+use frontend\models\PromotionShop;
 
 /**
- * OrderSearch represents the model behind the search form about `frontend\models\Order`.
+ * PromotionSearch represents the model behind the search form about `frontend\models\PromotionShop`.
  */
-class OrderSearch extends Order
+class PromotionSearch extends PromotionShop
 {
     /**
      * @inheritdoc
@@ -19,17 +18,8 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['id', 'product_id', 'bargained_num', 'price', 'status'], 'integer'],
-            [['order_number', 'open_id', 'created_at'], 'safe'],
-        ];
-    }
-
-    public static function searchAttributes()
-    {
-        return [
-            '订单编号' => 'order_number',
-            '微信用户' => 'open_id',
-            '砍价次数' => 'bargained_num'
+            [['id'], 'integer'],
+            [['name', 'url', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -51,8 +41,7 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $activity_ids = Activity::find()->select('id')->where(['user_id' => Yii::$app->user->id])->column();
-        $query = Order::find()->where(['act_id' => $activity_ids]);
+        $query = PromotionShop::find();
 
         // add conditions that should always apply here
 
@@ -71,15 +60,12 @@ class OrderSearch extends Order
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'product_id' => $this->product_id,
-            'bargained_num' => $this->bargained_num,
-            'price' => $this->price,
-            'status' => $this->status,
             'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
-//var_dump($this->order_number);die;
-        $query->andFilterWhere(['like', 'order_number', $this->order_number])
-            ->andFilterWhere(['like', 'open_id', $this->open_id]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

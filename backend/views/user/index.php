@@ -57,7 +57,25 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'created_at',
             // 'updated_at',
 
-            ['class' => 'common\components\grid\ActionColumn'],
+            [
+                'class' => 'common\components\grid\ActionColumn',
+                'template' => '{view}{update}{delete}{unlock}',
+                'buttons' => [
+                    'unlock' => function ($url, $model, $key) {
+                        return \common\helper\views\ColumnDisplay::operatingDelete(
+                            [
+                                'url'=> ['user/unlock', 'id' => $model->id],
+                                'method' => 'post',
+                                'title' => '确认解锁该商户',
+                                'content' => '您确认要解锁该商户吗?',
+                            ],
+                            '解锁',
+                            'fa fa-unlock'
+                        );
+                        //return Html::a('<span class="fa fa-check-square-o">完成</span>', $url, ['title' => '确认订单完成']);
+                    },
+                ],
+            ],
         ],
     ]); ?>
 </div>

@@ -70,16 +70,28 @@ class UploadController extends  BaseController
         ]);
     }
 
+    public function actionBottomImg(){
+        if (Yii::$app->request->isPost && !empty($_FILES)) {
+            $this->saveFiles('saveBottomImg');
+        }
+
+        return $this->render('create',[
+            'title' => '活动底部图片上传',
+            'action' => 'upload/bottom-img'
+        ]);
+    }
+
     /**
      * @return string
      */
     public function actionBackendMusic()
     {
         if (Yii::$app->request->isPost && !empty($_FILES)) {
+            var_dump($_FILES);die;
             $this->saveFiles('saveMusic');
         }
 
-        return $this->render('create',[
+        return $this->render('music-create',[
             'title' => '背景音乐上传',
             'action' => 'upload/backend-music'
         ]);

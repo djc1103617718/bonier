@@ -61,6 +61,8 @@ class ActivityController extends BaseController
         } else {
             return $this->render('create', [
                 'productList' => $model->productList(),
+                'promotionList' => $model->promotionList(),
+                'bottomImgList' => $model->bottomImgList(),
                 'model' => $model,
                 'carousels' => $model->carouselsList(),
                 'backend_musics' => $model->backendMusicList(),
@@ -88,6 +90,8 @@ class ActivityController extends BaseController
                 'model' => $model,
                 'carousels' => $model->carouselsList(),
                 'backend_musics' => $model->backendMusicList(),
+                'promotionList' => $model->promotionList(),
+                'bottomImgList' => $model->bottomImgList(),
             ]);
         }
     }

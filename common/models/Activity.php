@@ -16,6 +16,8 @@ use yii\db\ActiveRecord;
  * @property integer $user_id
  * @property integer $status
  * @property string $announcement
+ * @property string $promotion_shop
+ * @property string $bottom_img
  * @property string $music
  * @property string $carousels
  * @property string $created_at
@@ -63,6 +65,8 @@ class Activity extends \yii\db\ActiveRecord
             [['user_id', 'status'], 'integer'],
             [['name'], 'string', 'max' => 128],
             ['announcement', 'string', 'max' => 356],
+            ['bottom_img', 'string', 'max' => 256],
+            ['promotion_shop', 'string', 'max' => 456],
         ];
     }
 
@@ -79,6 +83,8 @@ class Activity extends \yii\db\ActiveRecord
             'user_id' => '创建活动的用户',
             'status' => '状态',
             'announcement' => '公告',
+            'promotion_shop' => '推荐商家',
+            'bottom_img' => '底部图片',
             'carousels' => '顶部轮播图',
             'music' => '背景音乐',
             'created_at' => '创建时间',

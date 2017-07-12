@@ -41,6 +41,11 @@ class JoinController extends BaseController
                 Yii::$app->session->setFlash('error', '活动已经结束');
                 return $this->redirect(Yii::$app->request->referrer);
             }
+            if (strtotime($activity->start_time) > time()) {
+                Yii::$app->session->setFlash('error', '活动时间未到');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
             $order = new Order();
             $order->open_id = $open_id;
             $order->customer_name = $model->name;
@@ -88,7 +93,7 @@ class JoinController extends BaseController
 
         // 检查活动是否已经发布以及是否已经结束
         $activity = Activity::findOne($order['act_id']);
-        if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time())) {
+        if (($activity->status != Activity::STATUS_PUBLIC) || (strtotime($activity->end_time) < time()) || (strtotime($activity->start_time) > time())) {
             return $this->redirect(Yii::$app->request->referrer);
         }
 
@@ -194,6 +199,9 @@ class JoinController extends BaseController
             if (empty($activity) || (strtotime($activity->end_time) < time())) {
                 return $this->redirect(Yii::$app->request->referrer);
             }
+            if (strtotime($activity->start_time) > time()) {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
 
             // 检查是否已经为他减少过价格
             $open_id = Yii::$app->session->get('open_id');
@@ -248,28 +256,29 @@ class JoinController extends BaseController
             ->asArray()
             ->all();
         $myProductIds = Order::find()
-            ->select('id')
             ->where(['open_id' => $open_id, 'status' => Order::STATUS_VALID, 'act_id' => $id])
+            ->select('product_id')
             ->column();
+
         $myProducts = Product::find()
             ->where(['id' => $myProductIds])
             ->asArray()
             ->all();
+        //var_dump($myProducts);die;
         $topCarousels = Media::find()
             ->select('url')
             ->where(['user_id' => $activity['user_id'], 'category' => Category::CATEGORY_TOP_CAROUSEL])
             ->column();
         $userProductImgList = Activity::userProductImgList($activity['user_id']);
+        $user = User::findOne($activity['user_id']);
         if (!isset($user['shop_name']) || empty($user['shop_name'])) {
-            Yii::$app->session->setFlash('error', '您还没有设置店铺名称');
             return $this->redirect(Yii::$app->request->referrer);
         }
         $address = Address::find()->where(['user_id' => $activity['user_id']])->one();
         if (empty($address)) {
-            Yii::$app->session->setFlash('error', '请完善店铺信息');
+
             return $this->redirect(Yii::$app->request->referrer);
         }
-        //var_dump($myProducts);die;
         return $this->render('my-product', [
             'activity' => $activity,
             'userProductImgList' => $userProductImgList,

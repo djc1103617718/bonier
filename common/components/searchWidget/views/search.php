@@ -91,7 +91,7 @@ $this->registerJs('
             var searchModelName = $("#search_name").attr("data");
             var searchAttribute = $("#button_label").attr("data-value");
             var searchValue = $("#search_value").val();
-            var url = baseUrl + "?" + searchModelName + "[" + searchAttribute + "]=" + searchValue;
+            var url = baseUrl + "&" + searchModelName + "[" + searchAttribute + "]=" + searchValue;
             location.href = url;
         });
 
