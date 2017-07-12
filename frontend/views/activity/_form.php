@@ -40,6 +40,25 @@ use kartik\datetime\DateTimePicker;
     <?= $form->field($model, 'promotion_shop')->dropDownList($promotionList, ['multiple' => 'multiple'])->label('推荐商家') ?>
 
     <div class="form-group field-product-bargain_num required">
+        <p><label class="control-label">请选择活动背景音乐</label></p>
+        <div style="border: 1px solid #997100; padding:10px; margin-bottom: 20px;">
+            <?php
+            if (empty($backend_musics)) {
+                echo '请先上传音频文件';
+            } else {
+                foreach ($backend_musics as $name => $url) {
+                    $str = "<label for='checkbox-01' class='label_check c_on'>";
+                    $str .= "<input type='radio' checked='checked' value='$url' id='checkbox-01' name='Activity[music]' />$name</label>";
+                    echo $str;
+                }
+            }
+            ?>
+
+        </div>
+    </div>
+
+
+    <div class="form-group field-product-bargain_num required">
         <p><label class="control-label">请选择活动顶部轮播图</label></p>
         <div style="border: 1px solid #997100; padding:10px; margin-bottom: 20px;">
             <?php
