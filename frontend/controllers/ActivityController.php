@@ -56,7 +56,8 @@ class ActivityController extends BaseController
     {
         $model = new Activity();
 
-        if ($model->load(Yii::$app->request->post()) && $model->create()) {
+        if ($model->load(Yii::$app->request->post())) {// && $model->create()
+            print_r(Yii::$app->request->post());echo '<br/>';var_dump($model);die;
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
