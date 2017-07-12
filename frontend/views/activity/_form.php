@@ -35,8 +35,6 @@ use kartik\datetime\DateTimePicker;
 
     <?= $form->field($model, 'products')->dropDownList($productList, ['multiple' => 'multiple'])->label('参加活动的商品') ?>
 
-    <?= $form->field($model, 'music')->dropDownList(array_flip($backend_musics))->label('背景音乐') ?>
-
     <?= $form->field($model, 'promotion_shop')->dropDownList($promotionList, ['multiple' => 'multiple'])->label('推荐商家') ?>
 
     <div class="form-group field-product-bargain_num required">
