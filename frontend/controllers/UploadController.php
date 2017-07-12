@@ -87,8 +87,36 @@ class UploadController extends  BaseController
     public function actionBackendMusic()
     {
         if (Yii::$app->request->isPost && !empty($_FILES)) {
-            var_dump($_FILES);die;
-            $this->saveFiles('saveMusic');
+            $web_rout = Yii::getAlias('@frontend') . '/web';
+            $user_id = Yii::$app->user->id;
+            $files = $_FILES['upload'];
+
+            if ($files['size'] > 12048000) {
+                Yii::$app->session->setFlash('error', '文件过大');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+            $tmpFile = $files['tmp_name'];
+            $nameArr = explode('.', $files['name']);
+            if (!isset($nameArr[1])) {
+                Yii::$app->session->setFlash('error', '没有上传文件');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+            $extension = $nameArr[1];
+            $rand = rand(0,9) . $user_id . rand(10, 99);
+            $url = 'upload/' . date("YmdHis",time()) . $rand . '.' . $extension;
+            $saveUrl = $web_rout . '/' . $url;
+            if (move_uploaded_file($tmpFile, $saveUrl)) {
+                $upload = new Upload();
+                if (!$upload->saveMusic($files['name'], $url)) {
+                    Yii::$app->session->setFlash('error', '文件:' . $files['name'] . '上传失败!');
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            } else {
+                Yii::$app->session->setFlash('error', '文件:' . $files['name'] . '上传失败!');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+            return $this->redirect(['media/music-index']);
         }
 
         return $this->render('music-create',[
