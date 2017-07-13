@@ -123,7 +123,7 @@ class ActivityController extends BaseController
         $model = $this->findModel($id);
         $model->status = Activity::STATUS_PUBLIC;
 
-        $now = date('Y-m-d', time());
+        $now = date('Y-m-d H:i:s', time());
         $activity = Activity::find()
             ->where(['user_id' => Yii::$app->user->id, 'status' => Activity::STATUS_PUBLIC])
             ->andWhere(['>=', 'end_time', $now])
