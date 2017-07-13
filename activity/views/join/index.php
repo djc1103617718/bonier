@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 
-    <img src="<?=Url::to('@web/images/picture10.jpg')?>" style="margin-top:10px;width:100%">
+	<img src="<?=$baseUrl.$mold['bottom_img']?>" style="margin-top:10px;width:100%">
 
 	<div class="footer">
 		<div class="container">

@@ -59,9 +59,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body onload="time_fun()" style="background:#217307">
 <?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
-<audio id="audio1">
-	<source src="<?=$baseUrl . $mold['music']?>">
-</audio>
+<!--<audio id="audio1">
+	<source src="<?/*=$baseUrl . $mold['music']*/?>">
+</audio>-->
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider">
 			<ul class="rslides" id="slider">
@@ -119,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div style="padding:20px;color: #ffffff"> 打开微信客户端的<span style="font-weight: bold;color: #ac2925"> [分享给朋友] </span>就可以邀请好友帮忙砍价了</div>
 
-	<img src="images/picture10.jpg" style="margin-top:10px;width:100%">
+	<img src="<?=$baseUrl.$mold['bottom_img']?>" style="margin-top:10px;width:100%">
 	<div class="footer">
 		<div class="container">
 			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.<?=$shop_name?></p>
