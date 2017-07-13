@@ -56,6 +56,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     border-color:#c3eefd;
     border-width:15px;
     }
+    .rotate_right
+    {
+    float:left;
+    -ms-transform:rotate(-45deg); /* IE 9 */
+    -moz-transform:rotate(-45deg); /* Firefox */
+    -webkit-transform:rotate(-45deg); /* Safari and Chrome */
+    -o-transform:rotate(-45deg); /* Opera */
+    transform:rotate(-45deg);
+    }
+	.content1
+	{
+		border: solid #f00;   /*设置边框样式跟颜色*/
+		border-width: 3px; /*设置边框宽度*/
+	}
 </style>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
@@ -154,6 +168,7 @@ document.getElementById("audio1").play();
 			echo '<div class="container stamp" style="margin-top:10px;padding-left:5px;padding-right:5px;width:100%">';
 			echo '<div style="background:#ffffff;padding-top:5px;padding-bottom:5px;margin-top:3px;">';
 			echo "<img src='$baseUrl$url' style='float:left;margin-left:5px' height='100px' width='100px'>";
+			echo "<span class='rotate_right content1' style='position:absolute;top:50px;left:20px;'><font size='5' color='#FF0000'>已售完</font></span>"
 			echo "<p style='padding-left:115px;color:#000'>{$product['name']}</p>";
 			echo "<p style='padding-left:115px;color:#000;font-size:10px;margin-top:10px'>{$product['participants']}人参与，剩{$product['lave_num']}件</p>";
 			$start_price = $product['start_price']/100;
