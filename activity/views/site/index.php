@@ -176,6 +176,7 @@ document.getElementById("audio1").play();
 		if (!empty($mold['promotion_shop'])) {
 			$promotionList = explode(',', $mold['promotion_shop']);
 			$promotion_shop_list = PromotionShop::find()
+			->where(['id' => $promotionList])
 			->select(['url', 'name'])
 			->asArray()
 			->all();
