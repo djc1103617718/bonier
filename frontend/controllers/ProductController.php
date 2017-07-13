@@ -30,6 +30,12 @@ class ProductController extends BaseController
         ]);
     }
 
+    public function actionTest()
+    {
+        var_dump(time());die;
+        return $this->render('test');
+    }
+
     /**
      * Displays a single Product model.
      * @param integer $id

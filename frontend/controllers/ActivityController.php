@@ -133,7 +133,7 @@ class ActivityController extends BaseController
             Yii::$app->session->setFlash('error', '发布活动失败!');
             return $this->redirect(Yii::$app->request->referrer);
         }
-        return $this->redirect(Yii::$app->urlManagerActivity->createUrl(['site/index', 'id' => $id]));
+        return $this->redirect(['index']);
     }
 
     /**
