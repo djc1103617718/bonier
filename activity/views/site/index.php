@@ -182,7 +182,6 @@ document.getElementById("audio1").play();
 			echo '<div class="clearfix"> </div></ul></div></div>';
 		}
 	}?>
-	<div> 对现在的价格满意,请点击链接[领取地址]到线下商店及时领取商品,商家联系电话:12323232132123</div>
 	<img src="<?=$baseUrl.$mold['bottom_img']?>" style="margin-top:10px;width:100%">
 
 	<div class="container" style="margin-top:10px;padding-left:5px;padding-right:5px;padding-bottom:20px">

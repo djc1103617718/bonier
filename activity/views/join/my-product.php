@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-
+	<div> 对现在的价格满意,请点击链接[领取地址]到线下商店及时领取商品,商家联系电话:12323232132123</div>
 	<div class="footer">
 		<div class="container">
 			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.<?=$shop_name?></p>
