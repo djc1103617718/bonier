@@ -140,7 +140,7 @@ document.getElementById("audio1").play();
 			</ul>
 		</div>
 	</div>
-
+<div id="note"></div>
 	<div class="container" style="margin-top:10px;padding-left:5px;padding-right:5px">
 		<div align="center" style="background: #2b9c4a"><font color="#ffffff">
 			<h3 > 访问量:<?=$mold['pageviews']?>  </h3>

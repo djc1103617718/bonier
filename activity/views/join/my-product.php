@@ -116,11 +116,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$bargained_num = $orders[$myProduct['id']]['bargained_num'];
 						$remained_bargain_num = $myProduct['bargain_num']-$orders[$myProduct['id']]['bargained_num'];
 						$current_price = $orders[$myProduct['id']]['price']/100;
-						echo "<p>订单号：1023801238</p>"
+						echo "<p>订单号：{$orders[$myProduct['id']]['order_number']}</p>";
 						echo "<p>已还价{$bargained_num}次，还可还价{$remained_bargain_num}次</p>";
 						echo "<p>应付：{$current_price}元</p>";
 						echo '<ul class="list2">';
-						echo "<li class="list2_left"><span class="m_2"><a href="#" class="link1">按钮</a></span></li>"
+						echo "<li class='list2_left'><span class='m_2'><a href='" . Url::to(['share/index', 'id' => $orders[$myProduct['id']]['order_number']]) . "' class='link1'>邀请好友砍价</a></span></li>";
 						echo "<li class='list2_right'><span class='m_1'><a href='". Url::to(['join/bargain-detail', 'id' => $orders[$myProduct['id']]['order_number']]) ."' class='link'>立即查看</a></span></li>";
 						echo '<div class="clearfix"></div>';
 						echo '</ul>';
