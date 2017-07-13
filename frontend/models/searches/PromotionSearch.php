@@ -41,7 +41,7 @@ class PromotionSearch extends PromotionShop
      */
     public function search($params)
     {
-        $query = PromotionShop::find();
+        $query = PromotionShop::find()->where(['user_id' => Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
