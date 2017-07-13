@@ -103,7 +103,6 @@ document.getElementById("audio1").play();
 }
 </script>
 <script src="<?=Url::to('@web/js/jquery.countdown.js', true)?>"></script>
-<script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
 <?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
 <body onload="playmusic();" style="background:#217307">

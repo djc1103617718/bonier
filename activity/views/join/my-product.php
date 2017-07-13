@@ -91,6 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$base_url = Yii::$app->params['frontend_host'];
 				if (!empty($myProducts)) {
 					foreach ($myProducts as $myProduct) {
+						$end_time = \activity\models\Activity::findOne($myProduct['act_id'])->end_time;
 						$product_img = isset($userProductImgList[$myProduct['media_id']])?$userProductImgList[$myProduct['media_id']]:null;
 						echo '<div class="col-md-3 span_6">';
 						echo '<div class="box_inner">';
@@ -175,6 +176,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$("#time").html('<p style="color: #aa5500">活动已经结束!!!</p>');
 		}
 	}
-	var time = <?=strtotime($mold['end_time'])?>;
+	var time = <?=strtotime($end_time)?>;
 	setInterval("CountDown(time)", 1000);
 </script>
