@@ -76,7 +76,7 @@ class Activity extends \common\models\Activity
             return false;
         }
         $this->products = array_unique($this->products);
-        $this->promotion_shop = implode($this->promotion_shop);
+        $this->promotion_shop = implode(',', $this->promotion_shop);
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
