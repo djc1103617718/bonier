@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $btn = \common\helper\views\ButtonGroup::begin();
     $btn->buttonDefault('添加', 'btn btn-success', 'add')->link(['product/create']);
-    $btn->buttonDefault('更新', 'btn btn-primary', 'update')->link(['product/update', 'id' => $model->id]);
+    $btn->buttonDefault('编辑', 'btn btn-primary', 'update')->link(['product/update', 'id' => $model->id]);
     $btn->buttonDefault('删除', 'btn btn-danger', 'delete')->confirm([
         'url' => ['product/delete', 'id' => $model->id],
         'method' => 'post',
@@ -34,7 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'product_number',
             'name',
             'description',
-            'act_id',
+            [
+                'attribute' => 'act_id',
+                'label' => '活动名称',
+                'value' => \yii\helpers\ArrayHelper::getValue($model, function($model) {
+                    $act = \frontend\models\Activity::findOne($model->act_id);
+                    if (!empty($act)) {
+                        return $act['name'];
+                    }
+                })
+            ],
             [
                 'label' => '商品图片',
                 'format' => 'raw',

@@ -18,8 +18,8 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'phone', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['shop_name', 'username', 'password', 'password_hash', 'password_reset_token', 'email', 'deadline', 'auth_key'], 'safe'],
+            [['id', 'phone', 'created_at', 'updated_at'], 'integer'],
+            [['shop_name', 'username', 'password', 'password_hash', 'password_reset_token', 'email', 'deadline', 'auth_key', 'referrals', 'status'], 'safe'],
         ];
     }
 
@@ -28,7 +28,9 @@ class UserSearch extends User
         return [
             '用户名' => 'username',
             '商店名称' => 'shop_name',
-            '邮箱' => 'email'
+            '邮箱' => 'email',
+            '推荐人' => 'referrals',
+            '状态' => 'status',
         ];
     }
 
@@ -56,6 +58,11 @@ class UserSearch extends User
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
         ]);
 
         $this->load($params);
@@ -64,6 +71,12 @@ class UserSearch extends User
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
+        }
+
+        if ($this->status === '正常') {
+            $this->status = User::STATUS_ACTIVE;
+        } elseif ($this->status === '删除') {
+            $this->status = User::STATUS_DELETE;
         }
 
         // grid filtering conditions
@@ -82,6 +95,7 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'referrals', $this->referrals])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key]);
 
         return $dataProvider;

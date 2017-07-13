@@ -32,15 +32,30 @@ use kartik\datetime\DateTimePicker;
     ]);
     ?>
     <?= $form->field($model, 'announcement')->textarea(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'products')->dropDownList($productList, ['multiple' => 'multiple'])->label('参加活动的商品') ?>
-
-    <?= $form->field($model, 'music')->dropDownList(array_flip($backend_musics))->label('背景音乐') ?>
-
-    <?= $form->field($model, 'promotion_shop')->dropDownList($promotionList, ['multiple' => 'multiple'])->label('推荐商家') ?>
+    <?= $form->field($model, 'products')->dropDownList($productList, ['multiple' => 'multiple'])->label('参加活动的商品(选择多个商品,windows系统请按住ctrl再选择商品,苹果系统按住command再选择商品)') ?>
+    <?= $form->field($model, 'promotion_shop')->dropDownList($promotionList, ['multiple' => 'multiple'])->label('推荐商家(选择多个推荐商家,windows系统请按住ctrl再选择推荐商家,苹果系统按住command再选择推荐商家)') ?>
 
     <div class="form-group field-product-bargain_num required">
-        <p><label class="control-label">请选择活动顶部轮播图</label></p>
+        <p><label class="control-label">请选择活动背景音乐</label></p>
+        <div style="border: 1px solid #997100; padding:10px; margin-bottom: 20px;">
+            <?php
+            if (empty($backend_musics)) {
+                echo '请先上传音频文件';
+            } else {
+                foreach ($backend_musics as $name => $url) {
+                    $str = "<label for='checkbox-01' class='label_check c_on'>";
+                    $str .= "<input type='radio' checked='checked' value='$url' id='checkbox-01' name='Activity[music]' />$name</label>";
+                    echo $str;
+                }
+            }
+            ?>
+
+        </div>
+    </div>
+
+
+    <div class="form-group field-product-bargain_num required">
+        <p><label class="control-label">请选择活动顶部轮播图(选择多个轮播图,windows系统请按住ctrl再选择轮播图,苹果系统按住command再选择轮播图)</label></p>
         <div style="border: 1px solid #997100; padding:10px; margin-bottom: 20px;">
             <?php
             if (empty($carousels)) {
@@ -76,7 +91,7 @@ use kartik\datetime\DateTimePicker;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? '创建' : '确定', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

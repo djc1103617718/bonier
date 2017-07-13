@@ -37,17 +37,46 @@ $this->params['breadcrumbs'][] = $this->title;
             'product_number',
             'name',
             'description',
-            'act_id',
+            [
+                'attribute' => 'act_id',
+                'label' => '活动名称',
+                'value' => function ($model) {
+                    $act = \frontend\models\Activity::findOne($model->act_id);
+                    if (!empty($act)) {
+                        return $act['name'];
+                    }
+                }
+            ],
             // 'media_id',
-            'reserve_price',
+            [
+                'attribute' => 'reserve_price',
+                'value' => function ($model) {
+                    return $model->reserve_price/100;
+                }
+            ],
             'total',
-            'start_price',
+            [
+                'attribute' => 'start_price',
+                'value' => function ($model) {
+                    return $model->start_price/100;
+                }
+            ],
             'bargain_num',
-            // 'lave_num',
+            //'lave_num',
             // 'created_at',
             // 'updated_at',
 
-            ['class' => 'common\components\grid\ActionColumn'],
+            [
+                'class' => 'common\components\grid\ActionColumn',
+                'template' => '{view}{update}{delete}',
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        $url = \yii\helpers\Url::to(['product/update', 'id' => $model->id]);
+                        return Html::a('<span class="fa fa-edit">编辑</span>', $url, ['title' => '预览活动页面']);
+                    },
+
+                ]
+            ],
         ],
     ]); ?>
 </div>

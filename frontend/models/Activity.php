@@ -63,7 +63,7 @@ class Activity extends \common\models\Activity
 
     public function create()
     {
-        $now = date('Y-m-d', time());
+        $now = date('Y-m-d H:i:s', time());
         $activity = Activity::find()
             ->where(['user_id' => Yii::$app->user->id, 'status' => self::STATUS_PUBLIC])
             ->andWhere(['>=', 'end_time', $now])
@@ -76,13 +76,12 @@ class Activity extends \common\models\Activity
             return false;
         }
         $this->products = array_unique($this->products);
-        $this->promotion_shop = implode($this->promotion_shop);
+        $this->promotion_shop = implode(',', $this->promotion_shop);
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
             $this->user_id = Yii::$app->user->id;
             $this->carousels = implode(',', $this->carousels);
-            //var_dump($this->toArray());die;
             if (!$this->save()) {
                 throw new Exception('创建失败!');
             }
@@ -107,7 +106,6 @@ class Activity extends \common\models\Activity
         if ($this->status === self::STATUS_PUBLIC) {
             return false;
         }
-
         $this->products = array_unique($this->products);
         $this->carousels = implode(',', $this->carousels);
         $this->promotion_shop = implode(',', $this->promotion_shop);
@@ -118,6 +116,7 @@ class Activity extends \common\models\Activity
                 throw new Exception('创建失败!');
             }
             $oldProducts = Product::updateAll(['act_id' => NULL], ['act_id' => $this->id]);
+
             if (!$oldProducts) {
                 throw new Exception('更新失败! ');
             }
@@ -129,7 +128,6 @@ class Activity extends \common\models\Activity
             $transaction->commit();
             return true;
         } catch (Exception $e) {
-            //var_dump($e->getMessage());die;
             $transaction->rollBack();
             return false;
         }

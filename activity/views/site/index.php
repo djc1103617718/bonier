@@ -5,7 +5,7 @@ use common\models\PromotionShop;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title><?=$shop_name?></title>
+<title><?=$shop_name . '[' . $mold['name'] . ']的砍价活动'?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -91,11 +91,11 @@ document.getElementById("audio1").play();
 <script src="<?=Url::to('@web/js/jquery.countdown.js', true)?>"></script>
 <script src="<?=Url::to('@web/js/script.js', true)?>"></script>
 </head>
+<?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
 <body onload="playmusic();" style="background:#217307">
     <audio id="audio1">
-	    <source src="Kalimba.mp3">
+	    <source src="<?=$baseUrl . $mold['music']?>">
     </audio>
-<?php $baseUrl = Yii::$app->params['frontend_host'] . '/';?>
 	<div class="container" style="padding-left:5px;padding-right:5px">
 		<div class="index_slider" name="头部轮播图">
 			<ul class="rslides" id="slider">
@@ -176,6 +176,7 @@ document.getElementById("audio1").play();
 		if (!empty($mold['promotion_shop'])) {
 			$promotionList = explode(',', $mold['promotion_shop']);
 			$promotion_shop_list = PromotionShop::find()
+			->where(['id' => $promotionList])
 			->select(['url', 'name'])
 			->asArray()
 			->all();

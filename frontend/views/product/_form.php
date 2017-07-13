@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'reserve_price')->textInput() ?>
 
     <?= $form->field($model, 'total')->textInput() ?>
@@ -23,6 +21,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'start_price')->textInput() ?>
 
     <?= $form->field($model, 'bargain_num')->textInput() ?>
+
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group field-product-bargain_num required">
         <p><label class="control-label">请选择商品图片</label></p>

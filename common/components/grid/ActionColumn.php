@@ -26,7 +26,7 @@ class ActionColumn extends \yii\grid\ActionColumn
         if ($actionName === 'view') {
             $label = '查看';
         } elseif ($actionName === 'update') {
-            $label = '更新';
+            $label = '编辑';
         } elseif ($actionName === 'delete') {
             $label = '删除';
         } else {

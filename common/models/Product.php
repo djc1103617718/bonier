@@ -73,7 +73,7 @@ class Product extends \yii\db\ActiveRecord
             'id' => 'ID',
             'product_number' => '商品编号',
             'name' => '商品名称',
-            'description' => '描叙',
+            'description' => '备注',
             'act_id' => '活动ID',
             'media_id' => '商品图片ID',
             'reserve_price' => '底价',
