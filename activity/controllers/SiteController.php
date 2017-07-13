@@ -77,6 +77,7 @@ class SiteController extends Controller
      */
     public function actionIndex($id)
     {
+        //var_dump(date('Y-m-d H:i:s', 1500794668845));die;
         $this->layout = false;
         $activity = Activity::findOne($id);
         if (empty($activity)) {

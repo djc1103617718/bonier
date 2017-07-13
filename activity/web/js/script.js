@@ -10,7 +10,7 @@ $(function(){
 		ts = (new Date()).getTime() + 10*24*60*60*1000;
 		newYear = false;
 	}
-		
+	console.log(ts);
 	$('#countdown').countdown({
 		timestamp	: ts,
 		callback	: function(days, hours, minutes, seconds){
