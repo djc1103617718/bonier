@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '文件列表'), 'url
 <form action="<?=\yii\helpers\Url::to([$action])?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_csrf-frontend" value="<?=Yii::$app->request->getCsrfToken()?>"/>
     <br/>
-    请选择文件：<br/><input type="file" id="input" name="upload" onchange="onc()" multiple="multiple" />
+    请选择文件(只能上传单个)：<br/><input type="file" id="input" name="upload" onchange="onc()" multiple="multiple" />
     <br/>
     <p id='fileTips'> </p>
     <br/>
