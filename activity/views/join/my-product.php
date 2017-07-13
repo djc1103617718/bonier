@@ -152,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<div style="padding: 10px"> 对现在的价格满意,请点击链接<a href="<?=\yii\helpers\Url::to(['share/address', 'id' => $activity['id']])?>">[领取地址]</a>到线下商店及时领取商品,商家联系电话:<?=$address['Landline'] . ' ' . $address['phone']?></div>
+	<div style="padding: 10px"> 对现在的价格满意,请点击链接<a style="color:#6f4215" href="<?=\yii\helpers\Url::to(['share/address', 'id' => $activity['id']])?>">[领取地址]</a>到线下商店及时领取商品,商家联系电话:<?=$address['Landline'] . ' ' . $address['phone']?></div>
 	<div class="footer">
 		<div class="container">
 			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.<?=$shop_name	?></p>
