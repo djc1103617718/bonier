@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->textInput(['autofocus' => true, 'placeholder' => '请输入密码'])->label(false) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('确定', ['class' => 'btn btn-primary']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

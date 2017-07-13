@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'url' => ['activity/public', 'id' => $model->id],
                                 'method' => 'post',
                                 'title' => '确认发布活动',
-                                'content' => '一旦发布,用户将可以下单,该活动亦将不可更改,您确认发布该活动吗?',
+                                'content' => '发布之前请您确定已经预览该活动,一旦发布该活动,用户将可以下订单,该活动将不可修改和删除,你确定要发布活动吗?',
                             ],
                             '发布',
                             'fa fa-share-square-o'

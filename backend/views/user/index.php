@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'phone',
             'deadline',
+            'referrals',
             // 'auth_key',
             [
                 'attribute' => 'status',
@@ -54,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 }
             ],
-            // 'created_at',
+            'created_at',
             // 'updated_at',
 
             [

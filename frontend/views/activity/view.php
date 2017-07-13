@@ -16,13 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     $btn = \common\helper\views\ButtonGroup::begin();
-    $btn->buttonDefault('更新', 'btn btn-primary', 'update')->link(['activity/update', 'id' => $model->id]);
-    $btn->button('发布', 'btn btn-info', null, 'fa fa-share-square-o')->confirm([
+    $btn->buttonDefault('预览', 'btn btn-info', 'view')->link(['activity/preview', 'id' => $model->id]);
+    $btn->button('发布', 'btn btn-warning', null, 'fa fa-share-square-o')->confirm([
         'url' => ['activity/public', 'id' => $model->id],
         'method' => 'post',
         'title' => '发布活动',
-        'content' => '一旦发布该活动不可修改和删除,你确定要发布活动吗?'
+        'content' => '发布之前请您确定已经预览了活动,一旦发布该活动,用户将可以下订单,该活动将不可修改和删除,你确定要发布活动吗?'
     ]);
+    $btn->buttonDefault('更新', 'btn btn-primary', 'update')->link(['activity/update', 'id' => $model->id]);
     $btn->buttonDefault('删除', 'btn btn-danger', 'delete')->confirm([
         'url' => ['activity/delete', 'id' => $model->id],
         'method' => 'post',
@@ -39,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'start_time',
             'end_time',
-            //'user_id',
+            'announcement',
+            //'promotion_shop',
             [
                 'attribute' => 'status',
                 'format' => 'raw',
