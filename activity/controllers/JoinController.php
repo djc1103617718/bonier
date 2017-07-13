@@ -286,7 +286,7 @@ class JoinController extends BaseController
             'myProducts' => $myProducts,
             'topCarousels' => $topCarousels,
             'shop_name' => $user['shop_name'],
-            'address' => $address
+            'address' => $address,
 
         ]);
     }
