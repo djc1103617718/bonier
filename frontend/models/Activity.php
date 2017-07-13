@@ -63,7 +63,7 @@ class Activity extends \common\models\Activity
 
     public function create()
     {
-        $now = date('Y-m-d', time());
+        $now = date('Y-m-d H:i:s', time());
         $activity = Activity::find()
             ->where(['user_id' => Yii::$app->user->id, 'status' => self::STATUS_PUBLIC])
             ->andWhere(['>=', 'end_time', $now])
