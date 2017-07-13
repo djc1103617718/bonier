@@ -111,11 +111,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						echo '<div class="col-md-3 span_6">';
 						echo '<div class="box_inner">';
 						echo "<img src='$base_url/$product_img' class='img-responsive' style='height:320px;width:100%' alt=''/>";
-						echo '<div class="sale-box"> </div>';
-						echo '<div class="desc">';
 						$bargained_num = $orders[$myProduct['id']]['bargained_num'];
 						$remained_bargain_num = $myProduct['bargain_num']-$orders[$myProduct['id']]['bargained_num'];
 						$current_price = $orders[$myProduct['id']]['price']/100;
+						if ($remained_bargain_num === 0) {
+							echo "<span class='rotate_right content1' style='position:absolute;top:50px;left:20px;'><font size='5' color='#FF0000'>砍价完成</font></span>";
+						}
+						echo '<div class="sale-box"> </div>';
+						echo '<div class="desc">';
 						echo "<p>订单号：{$orders[$myProduct['id']]['order_number']}</p>";
 						echo "<p>已还价{$bargained_num}次，还可还价{$remained_bargain_num}次</p>";
 						echo "<p>应付：{$current_price}元</p>";
@@ -149,10 +152,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<div style="padding: 10px"> 对现在的价格满意,请点击链接[领取地址]到线下商店及时领取商品,商家联系电话:12323232132123</div>
+	<div style="padding: 10px"> 对现在的价格满意,请点击链接<a href="<?=\yii\helpers\Url::to(['share/address', 'id' => $activity['id']])?>">[领取地址]</a>到线下商店及时领取商品,商家联系电话:<?=$address['Landline'] . ' ' . $address['phone']?></div>
 	<div class="footer">
 		<div class="container">
-			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.<?=$shop_name?></p>
+			<p class="copy" style="margin-top:-20px">Copyright &copy; 2017.<?=$shop_name	?></p>
 			<p class="copy">联系电话：<?=$address['Landline'] . ' ' . $address['phone']?> </p>
 			<p class="copy" style="margin-bottom:10px">技术支持：15773276075</p>
 		</div>
