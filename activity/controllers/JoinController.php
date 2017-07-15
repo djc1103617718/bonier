@@ -61,7 +61,6 @@ class JoinController extends BaseController
             }
             return $this->redirect(['join/index', 'id' => $order->order_number]);
         }
-        //var_dump($model->errors);echo"<br/>";var_dump(Yii::$app->request->isPost);die;
         $mold = Activity::joinActivityData($id, $product_id);
         $userProductImgList = Activity::userProductImgList($mold['user_id']);
         return $this->render('order-before',[
@@ -276,7 +275,6 @@ class JoinController extends BaseController
         }
         $address = Address::find()->where(['user_id' => $activity['user_id']])->one();
         if (empty($address)) {
-
             return $this->redirect(Yii::$app->request->referrer);
         }
         return $this->render('my-product', [
