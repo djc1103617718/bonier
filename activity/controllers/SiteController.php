@@ -113,7 +113,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        var_dump('qqqq');die;
         $model = new AppWechat();
         $redirect_url = urlencode('http://' . $model->host . '/bonier/activity/web/index.php?r=site/login-process');
         $scope = 'snsapi_login';
