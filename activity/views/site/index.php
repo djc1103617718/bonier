@@ -168,7 +168,7 @@ document.getElementById("audio1").play();
 			echo '<div class="container stamp" style="margin-top:10px;padding-left:5px;padding-right:5px;width:100%">';
 			echo '<div style="background:#ffffff;padding-top:5px;padding-bottom:5px;margin-top:3px;">';
 			echo "<img src='$baseUrl$url' style='float:left;margin-left:5px' height='100px' width='100px'>";
-			if ($product['lave_num'] === 0) {
+			if ($product['lave_num'] == 0) {
 				echo "<span class='rotate_right content1' style='position:absolute;top:50px;left:20px;'><font size='5' color='#FF0000'>已售完</font></span>";
 			}
 			echo "<p style='padding-left:115px;color:#000'>{$product['name']}</p>";
