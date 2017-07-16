@@ -178,4 +178,19 @@ class Activity extends \common\models\Activity
         return $music;
     }
 
+    public function validateActivity()
+    {
+        $user = User::findOne(Yii::$app->user->id);
+        if (!isset($user['shop_name']) || empty($user['shop_name'])) {
+            Yii::$app->session->setFlash('error', '您还没有给自己的商店命名, 请联系服务商!');
+            return false;
+        }
+        $address = Address::findOne(['user_id' => $user['id']]);
+        if (empty($address)) {
+            Yii::$app->session->setFlash('error', '请完善店铺信息!');
+            return false;
+        }
+        return true;
+    }
+
 }

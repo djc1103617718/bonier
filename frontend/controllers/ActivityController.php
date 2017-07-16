@@ -56,7 +56,7 @@ class ActivityController extends BaseController
     {
         $model = new Activity();
 
-        if ($model->load(Yii::$app->request->post()) && $model->create()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validateActivity() && $model->create()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -80,7 +80,7 @@ class ActivityController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->updateActivity()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validateActivity() && $model->updateActivity()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $products = Product::find()->select('name')->where(['act_id' => $model->id])->indexBy('id')->column();
