@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'product_id',
             [
                 'attribute' => 'open_id',
+                'label' => '微信昵称',
                 'value' => function ($model) {
                     $wechat = \common\models\Wechat::findOne(['open_id' => $model->open_id]);
                     if ($wechat) {
