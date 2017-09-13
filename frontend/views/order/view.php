@@ -34,6 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'order_number',
             'product_id',
             'open_id',
+            [
+                'label' => '客户名称',
+                'attribute' => 'customer_name',
+            ],
             'bargained_num',
             [
                 'attribute' => 'price',

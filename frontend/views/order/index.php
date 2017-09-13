@@ -41,6 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 }
             ],
+            [
+                'label' => '客户名称',
+                'attribute' => 'customer_name',
+            ],
             'bargained_num',
             [
                 'attribute' => 'phone',
