@@ -4,6 +4,7 @@ namespace activity\controllers;
 use activity\models\Activity;
 use activity\models\Address;
 use activity\models\AppWechat;
+use activity\models\Product;
 use activity\models\Wechat;
 use common\components\HttpQuery;
 use common\models\User;
@@ -167,8 +168,14 @@ class SiteController extends Controller
         }
     }
 
+    public function actionDetail($id)//product id
+    {
+        $product = Product::findOne($id);
+        var_dump($product->toArray());die;
+    }
+
     /**
-     * Displays about page.
+     * Displays about page
      *
      * @return mixed
      */

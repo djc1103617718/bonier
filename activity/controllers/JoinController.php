@@ -209,13 +209,18 @@ class JoinController extends BaseController
                 return $this->redirect(Yii::$app->request->referrer);
             }
 
+            // jiancha shifou jiage shifou yijing daodile
+            $product = Product::findOne($order->product_id);
+            if ($order->price <= 0 || $order->price <= $product->reserve_price) {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
             // 新人参与帮忙减价并入库
             $bargainPartner = new BargainPartner();
             $bargainPartner->open_id = $open_id;
             $bargainPartner->created_at = date('Y-m-d H:i:s', time());
             $bargainPartner->order_id = $order->id;
             $bargained_num = $order->bargained_num;
-            $product = Product::findOne($order->product_id);
             $remained_bargained_num = $product->bargain_num - $bargained_num;
             $remained_price = $order->price - $product->reserve_price;
             $bargainPartner->decrease_price = $this->randBargain($remained_bargained_num, $remained_price);

@@ -46,6 +46,7 @@
                     <p class="help-block help-block-error" style="color:red;"></p>
                 </div>
             </div>
+
             <div class="col-xs-6 delete_padding">
                 <div class="form-group">
                     <span class="yzm_value btn-block btn-flat" >
